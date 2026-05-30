@@ -685,6 +685,7 @@ html[lang="es"] .sw-title {
   color: var(--coral);
   display: block;
   overflow: visible;
+  text-align: center; /* AGREGAR ESTA LÍNEA */
   padding-bottom: 0; /* 2. Ya no hace falta este parche */
   margin-bottom: -0.25em; /* 3. Si querés las palabras más pegadas, hacé este número más negativo (ej: -0.35em) */
 }
@@ -739,7 +740,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .hero-eyebrow{left:28px;top:90px;}
   #hero-name-wrap{padding:0 16px;bottom:60px;}
   .os-folders{grid-template-columns:1fr 1fr}
-  .contact-pre,.contact-content{padding:60px 28px 40px}
+  .contact-pre{padding:90px 20px 20px;position:relative;z-index:2;text-align:center;}
   footer{padding:20px 28px}
   #nn-canvas{height:280px; margin-top:-40px;}
   .work-layout-scaler{transform:scale(0.75);transform-origin:center center;height:680px;}
@@ -866,7 +867,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .osend{width:100%;text-align:center;padding:12px;}
   .omsg{max-width:92%;font-size:13px;}
   .contact-pre{padding:90px 56px 20px;position:relative;z-index:2;text-align:center;}
-  .contact-content{position:relative;z-index:2;padding:40px 56px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
+  .contact-content{position:relative;z-index:2;padding:40px 20px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
   .hero-eyebrow{font-size:8px;left:20px;top:80px;}
   #hero-name-wrap{padding:0 12px;}
   nav,nav.scrolled{padding:16px 20px;}
