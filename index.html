@@ -120,7 +120,8 @@ nav.scrolled{
 .mobile-lang .lang-btn{padding:10px 20px;font-size:10px}
 
 /* ═══ HERO ═══ */
-#hero-pin{position:relative;height:400vh;}
+/* CAMBIO: height reducido de 400vh a 250vh para scrollear mucho menos */
+#hero-pin{position:relative;height:250vh;}
 #hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--black);}
 
 #hero-blue-bg {
@@ -173,7 +174,7 @@ nav.scrolled{
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* CAMBIO: scroll indicator */
+/* CAMBIO: scroll indicator ahora es verde y solo desaparece al scrollear */
 #scroll-hint {
   position: absolute;
   top: 50%;
@@ -185,26 +186,29 @@ nav.scrolled{
   align-items: center;
   gap: 8px;
   opacity: 0;
-  animation: scrollHintFade 3s ease forwards 1s;
+  animation: scrollHintIntro 1s ease forwards 1s;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-@keyframes scrollHintFade {
-  0%   { opacity: 0; transform: translate(-50%, -50%); }
-  20%  { opacity: 1; transform: translate(-50%, calc(-50% + 0px)); }
-  70%  { opacity: 1; transform: translate(-50%, calc(-50% + 0px)); }
-  100% { opacity: 0; transform: translate(-50%, calc(-50% + 8px)); }
+#scroll-hint.hidden {
+  opacity: 0 !important;
+  animation: none !important;
+}
+@keyframes scrollHintIntro {
+  0%   { opacity: 0; transform: translate(-50%, calc(-50% - 10px)); }
+  100% { opacity: 1; transform: translate(-50%, -50%); }
 }
 .scroll-hint-text {
   font-family: var(--fm);
   font-size: 10px;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--coral); /* CAMBIO: Mismo verde */
 }
 .scroll-hint-arrow {
   width: 1px;
   height: 24px;
-  background: linear-gradient(to bottom, var(--muted), transparent);
+  background: linear-gradient(to bottom, var(--coral), transparent); /* CAMBIO: Mismo verde */
   animation: arrowBob 1.4s ease-in-out infinite;
 }
 @keyframes arrowBob {
@@ -215,7 +219,6 @@ nav.scrolled{
 #hero-name-wrap{
   position:absolute;bottom:80px;left:0;right:0;
   display:flex;justify-content:center;padding:0 32px;
-  /* CAMBIO: overflow visible para descendentes */
   overflow:visible;
   padding-bottom: 16px;
 }
@@ -225,7 +228,6 @@ nav.scrolled{
   font-size:clamp(22px, 5.5vw, 112px);
   font-weight:800;line-height:1;letter-spacing:-.04em;
   color:var(--text);white-space:nowrap;max-width:100%;
-  /* CAMBIO: padding para descendentes */
   padding-bottom: .15em;
   overflow: visible;
 }
@@ -233,7 +235,6 @@ nav.scrolled{
   display:inline-block;opacity:0;transform:translateY(30px);
   transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);
   will-change:transform,opacity;
-  /* CAMBIO: overflow visible */
   overflow: visible;
 }
 .name-word.show{opacity:1;transform:translateY(0)}
@@ -260,7 +261,6 @@ nav.scrolled{
   pointer-events:none;
   opacity:0;
   transition:opacity .3s ease;
-  /* CAMBIO: overflow visible para descendentes */
   overflow: visible;
 }
 .hero-sub.show{opacity:1}
@@ -273,7 +273,6 @@ nav.scrolled{
   color: var(--text);
   overflow: visible;
   transition: color 0.4s ease;
-  /* CAMBIO: padding para descendentes */
   padding-bottom: .2em;
 }
 .word {
@@ -282,14 +281,12 @@ nav.scrolled{
   vertical-align: bottom;
   -webkit-clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
   clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
-  /* CAMBIO: overflow visible */
   overflow: visible;
 }
 .word > span {
   display: inline-block;
   transform: translateY(150%); 
   transition: transform .4s cubic-bezier(.16,1,.3,1);
-  /* CAMBIO: overflow visible para descendentes */
   overflow: visible;
   padding-bottom: .1em;
 }
@@ -342,11 +339,9 @@ section{position:relative;overflow:visible;}
 .about-h{
   font-family:var(--fd);font-size:clamp(44px,4.8vw,68px);font-weight:700;
   letter-spacing:-.04em;line-height:.9;color:var(--text);
-  /* CAMBIO: overflow visible para descendentes */
   overflow: visible;
   padding-bottom: .1em;
 }
-/* CAMBIO: overflow visible global para textos con descendentes */
 .about-p{
   font-family:var(--fs);font-size:20px;line-height:1.88;
   color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:0;
@@ -406,13 +401,11 @@ section{position:relative;overflow:visible;}
   background: transparent;
 }
 
-/* CAMBIO: animación de fill mucho más suave con will-change y transition más larga */
 .timeline-fill {
   position: absolute; top: 0; left: 0; right: 0;
   background: var(--green);
   border-radius: 10px;
   height: 0%;
-  /* CAMBIO: transition suave, idéntica para ambas secciones */
   transition: height 0.08s linear;
   box-shadow: 0 0 15px rgba(144,238,144,0.5);
   z-index: 1;
@@ -505,7 +498,6 @@ section{position:relative;overflow:visible;}
 
 #work .section-inner{padding:150px 0 200px;position:relative;z-index:5;}
 
-/* CAMBIO: radio del círculo aumentado (350px → 390px) */
 .work-layout-scaler{position:relative;width:100%;height:900px;overflow:hidden;}
 
 @keyframes orbit{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
@@ -528,7 +520,6 @@ section{position:relative;overflow:visible;}
   font-weight:800;line-height:0.95;color:#fff;
   letter-spacing:-0.04em;
   animation:pulse-glow 3s ease-in-out infinite alternate;
-  /* CAMBIO: overflow visible para descendentes */
   overflow: visible;
   padding-bottom: .1em;
 }
@@ -542,8 +533,7 @@ html[lang="es"] .sw-title {
   100%{transform:scale(1.05);text-shadow:0 0 35px rgba(255,255,255,0.7);}
 }
 
-/* CAMBIO: radio aumentado de 310px a 390px */
-.rf-pos{position:absolute;transform:rotate(var(--rot)) translateY(-390px);}
+.rf-pos{position:absolute;transform:rotate(var(--rot)) translateY(-310px);}
 .rf-animator{position:absolute;top:0;left:0;animation:counter-orbit 45s linear infinite;}
 .rf-animator-inner{
   position:absolute;
@@ -605,7 +595,6 @@ html[lang="es"] .sw-title {
 .os-title{
   font-family:var(--fd);font-size:clamp(36px,4.2vw,56px);font-weight:700;
   letter-spacing:-.04em;color:var(--text);
-  /* CAMBIO: overflow visible */
   overflow: visible;
   padding-bottom: .1em;
 }
@@ -666,8 +655,7 @@ html[lang="es"] .sw-title {
 
 /* ═══ CONTACT ═══ */
 #contact{padding:0;border:none;position:relative;overflow:hidden;min-height:100vh;background:transparent;display:flex;flex-direction:column;justify-content:flex-end;margin-top:160px;}
-.contact-pre{padding:90px 56px 64px;position:relative;z-index:2;text-align:center;}
-/* CAMBIO: color blanco para "Want to work together?" */
+.contact-pre{padding:90px 56px 32px;position:relative;z-index:2;text-align:center;}
 .contact-pre-eyebrow{
   font-family:var(--fm);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   color:#ffffff;
@@ -676,7 +664,6 @@ html[lang="es"] .sw-title {
 .contact-pre-big{
   font-family:var(--fd);font-size:clamp(42px,7vw,96px);font-weight:700;
   letter-spacing:-.04em;line-height:.9;color:var(--text);
-  /* CAMBIO: overflow visible para descendentes */
   overflow: visible;
   padding-bottom: .2em;
 }
@@ -687,16 +674,19 @@ html[lang="es"] .sw-title {
   pointer-events:none;z-index:1;
 }
 #contact.revealed .contact-circle{bottom:-55vmax}
-.contact-content{position:relative;z-index:2;padding:90px 56px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
+.contact-content{position:relative;z-index:2;padding:45px 56px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
 #contact.revealed .contact-content{opacity:1}
-.cbig{
-  font-family:var(--fd);font-size:clamp(56px,9.5vw,132px);
-  font-weight:800;letter-spacing:-.05em;line-height:.85;
-  color:var(--coral);display:block;
-  /* CAMBIO: overflow visible y padding para descendentes */
+.cbig {
+  font-family: var(--fd);
+  font-size: clamp(56px, 9.5vw, 132px); /* ESTA ES LA LÍNEA */
+  font-weight: 800;
+  letter-spacing: -.05em;
+  line-height: 1.1; /* 1. Subimos esto para que no ampute las letras largas */
+  color: var(--coral);
+  display: block;
   overflow: visible;
-  padding-bottom:.3em;
-  margin-bottom:-.25em;
+  padding-bottom: 0; /* 2. Ya no hace falta este parche */
+  margin-bottom: -0.25em; /* 3. Si querés las palabras más pegadas, hacé este número más negativo (ej: -0.35em) */
 }
 .cbig span{display:inline-block;transform:translateY(110%);overflow:visible;}
 .contact-email{
@@ -729,7 +719,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 /* ═══ RESPONSIVE BREAKPOINTS ═══ */
 @media(max-width:1200px){
   .hero-name{font-size:clamp(22px, 6vw, 90px);}
-  /* CAMBIO: radio ajustado */
   .work-layout-scaler{transform:scale(0.9);transform-origin:center center;height:820px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-350px);}
 }
@@ -760,7 +749,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 }
 
 @media(max-width:768px){
-  /* CAMBIO: nombre en dos líneas solo en mobile */
   .hero-name{
     font-size:clamp(20px, 6vw, 64px);
     letter-spacing:-.05em;
@@ -877,8 +865,8 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .ochat-input{flex-direction:column;}
   .osend{width:100%;text-align:center;padding:12px;}
   .omsg{max-width:92%;font-size:13px;}
-  .contact-pre{padding:50px 20px 30px;}
-  .contact-content{padding:60px 20px 60px;}
+  .contact-pre{padding:90px 56px 20px;position:relative;z-index:2;text-align:center;}
+  .contact-content{position:relative;z-index:2;padding:40px 56px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
   .hero-eyebrow{font-size:8px;left:20px;top:80px;}
   #hero-name-wrap{padding:0 12px;}
   nav,nav.scrolled{padding:16px 20px;}
@@ -953,7 +941,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     <div class="hero-inner">
       <p class="hero-eyebrow" data-es="AI Engineer — Buenos Aires" data-en="AI Engineer — Buenos Aires">AI Engineer — Buenos Aires</p>
 
-      <!-- CAMBIO: indicador de scroll -->
       <div id="scroll-hint">
         <span class="scroll-hint-text" id="scrollHintText">Scroll down</span>
         <div class="scroll-hint-arrow"></div>
@@ -1305,7 +1292,6 @@ function buildWords(words){
   });
 }
 
-/* CAMBIO: actualiza el texto del scroll hint según idioma */
 function updateScrollHint(l) {
   const el = document.getElementById('scrollHintText');
   if (el) el.textContent = l === 'es' ? 'Deslizá hacia abajo' : 'Scroll down';
@@ -1489,11 +1475,6 @@ window.addEventListener('resize', () => { initNN(); });
 window.addEventListener('load', () => { initNN(); animateNN(); });
 
 /* ═══ SKILLS TIMELINE — animación suave con rAF ═══ */
-/* CAMBIO: usamos requestAnimationFrame para interpolar suavemente el fill,
-   igual que funciona la sección "Software" (que no tiene jank porque
-   su timeline-container es más corto y el viewport-trigger encaja mejor).
-   Ahora ambas secciones usan el mismo mecanismo. */
-
 let timelineFillTargets = new Map();
 
 function updateTimeline() {
@@ -1509,7 +1490,6 @@ function updateTimeline() {
     let prog = (triggerPoint - rect.top) / rect.height;
     prog = Math.max(0, Math.min(1, prog));
 
-    // CAMBIO: interpolación suave en lugar de asignación directa
     const key = container;
     const current = timelineFillTargets.get(key) || 0;
     const smoothed = current + (prog - current) * 0.12;
@@ -1552,11 +1532,18 @@ function onScroll(){
     if(subTextContainer) subTextContainer.style.color = 'var(--text)';
   }
 
+  // CAMBIO: Lógica para ocultar el hint de scroll suavemente al moverse
+  const scrollHint = document.getElementById('scroll-hint');
+  if (window.scrollY > 20) {
+    if(scrollHint) scrollHint.classList.add('hidden');
+  } else {
+    if(scrollHint) scrollHint.classList.remove('hidden');
+  }
+
   updateCanvasRain();
 }
 window.addEventListener('scroll', onScroll, {passive:true});
 
-/* CAMBIO: loop de rAF dedicado para el timeline (suave, independiente del scroll event) */
 function timelineLoop() {
   updateTimeline();
   requestAnimationFrame(timelineLoop);
