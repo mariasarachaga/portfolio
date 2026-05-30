@@ -13,6 +13,7 @@
   --blue:  #4749E3;
   --coral: #F1675C;
   --pink:  #F446B7;
+  --green: #90EE90;
   --text:  #F0EDE8;
   --muted: rgba(240,237,232,.38);
   --line:  rgba(240,237,232,.07);
@@ -273,13 +274,137 @@ section{position:relative;overflow:visible;}
   );
 }
 
-/* ESPACIO REDUCIDO A LA MITAD: 1650px → 825px */
 #about .section-inner {
   padding-top: 825px;
   padding-bottom: 200px;
 }
 
-/* ═══ LÍNEA SERPENTINA (transición after About) ═══ */
+#about-glow .glow-orb{width:700px;height:700px;top:-10%;right:-15%;opacity:.38;animation:orbdrift 25s ease-in-out infinite alternate-reverse;}
+
+.about-h{font-family:var(--fd);font-size:clamp(44px,4.8vw,68px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--text);}
+.about-p{font-family:var(--fs);font-size:20px;line-height:1.88;color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:0;}
+.about-p strong{color:var(--text);font-style:normal;font-weight:400}
+
+/* NUEVO LAYOUT ABOUT & SKILLS TIMELINE */
+.about-header-new {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.about-p-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 700px;
+}
+@media(min-width: 960px) {
+  .about-header-new {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  .about-p-box { margin-top: 15px; }
+}
+
+.skills-wrapper {
+  margin-top: 380px; /* Aumentado para dar el respiro visual de ~10-15cm */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.skills-title {
+  font-family: var(--fd);
+  font-size: clamp(36px, 5vw, 54px);
+  color: var(--green); /* Modificado a verde */
+  margin-bottom: 70px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Timeline Base */
+.timeline-container {
+  position: relative;
+  width: 8px;
+  height: 900px; /* Altura aumentada para alojar los 12 skills */
+}
+.timeline-track {
+  position: absolute; inset: 0;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  background: transparent;
+}
+.timeline-fill {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: var(--green); /* Modificado a verde */
+  border-radius: 10px;
+  height: 0%;
+  transition: height 0.1s ease-out;
+  box-shadow: 0 0 15px rgba(144,238,144,0.5); /* Sombra verde */
+  z-index: 1;
+}
+
+/* Track End Knobs (Empty circles that fill up) */
+.track-knob {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  background: var(--black);
+  z-index: 2;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.track-knob.top { top: -16px; }
+.track-knob.bottom { bottom: -16px; }
+
+.track-knob.filled {
+  background: var(--green); /* Modificado a verde */
+  border-color: var(--green);
+  box-shadow: 0 0 10px rgba(144,238,144,0.6);
+}
+
+/* Timeline Items */
+.timeline-item {
+  position: absolute;
+  display: flex; align-items: center;
+  width: 250px;
+  font-family: var(--fm);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.3;
+  transition: opacity 0.4s ease, color 0.4s ease, transform 0.4s ease;
+}
+.timeline-item.active {
+  opacity: 1;
+  color: var(--green); /* Modificado a verde */
+  text-shadow: 0 0 8px rgba(144,238,144,0.3);
+}
+.timeline-item.right {
+  left: 100%; margin-left: 15px;
+  transform: translateY(-50%);
+}
+.timeline-item.left {
+  right: 100%; margin-right: 15px;
+  transform: translateY(-50%);
+  justify-content: flex-end;
+}
+.timeline-dash {
+  width: 15px; height: 2px;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.4s ease, width 0.4s ease, box-shadow 0.4s ease;
+}
+.timeline-item.active .timeline-dash {
+  background: var(--green); /* Modificado a verde */
+  width: 25px;
+  box-shadow: 0 0 8px rgba(144,238,144,0.6);
+}
+.timeline-item.right .timeline-dash { margin-right: 15px; }
+.timeline-item.left .timeline-dash { margin-left: 15px; order: 2; }
+.timeline-item.left .timeline-content { order: 1; text-align: right; }
+
+/* ═══ LÍNEA SERPENTINA ═══ */
 #snake-transition {
   position: relative;
   width: 100%;
@@ -289,19 +414,6 @@ section{position:relative;overflow:visible;}
   z-index: 2;
   margin-top: -100px;
 }
-
-#about-glow .glow-orb{width:700px;height:700px;top:-10%;right:-15%;opacity:.38;animation:orbdrift 25s ease-in-out infinite alternate-reverse;}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
-.about-h{font-family:var(--fd);font-size:clamp(44px,4.8vw,68px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--text);}
-.about-p{font-family:var(--fs);font-size:20px;line-height:1.88;color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:28px;}
-.about-p strong{color:var(--text);font-style:normal;font-weight:400}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,237,232,.04);margin-top:44px;border:1px solid rgba(240,237,232,.04);border-radius:8px;overflow:hidden;}
-.sk{background:rgba(8,8,8,.6);padding:24px;transition:background .3s;position:relative;backdrop-filter:blur(10px);}
-.sk::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--coral),var(--pink));opacity:.5;transition:width .45s ease;}
-.sk:hover{background:rgba(20,20,25,.8)}
-.sk:hover::after{width:100%}
-.sk-label{font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:1;margin-bottom:9px;}
-.sk-val{font-family:var(--fd);font-size:14px;font-weight:500}
 
 /* ═══ WORK ═══ */
 #work{position:relative;background:transparent;}
@@ -532,12 +644,10 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .nav-menu-btn{display:flex}
   .nav-right{gap:16px}
   .section-inner{padding:88px 28px}
-  /* ESPACIO REDUCIDO A LA MITAD en mobile: 1200px → 600px */
   #about .section-inner{padding-top:600px;padding-bottom:300px;}
   #pixel-canvas{height:700px;}
   .hero-eyebrow{left:28px;top:90px;}
   #hero-name-wrap{padding:0 16px;bottom:60px;}
-  .about-grid{grid-template-columns:1fr;gap:52px}
   .os-folders{grid-template-columns:1fr 1fr}
   .contact-pre,.contact-content{padding:60px 28px 40px}
   footer{padding:20px 28px}
@@ -554,12 +664,9 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   #hero-name-wrap{bottom:48px;}
   .hero-eyebrow{font-size:9px;letter-spacing:.18em;}
   .hero-sub-text{font-size:clamp(28px,7vw,48px);}
-  /* Espacio further reducido en pequeñas tablets */
   #about .section-inner{padding-top:480px;padding-bottom:240px;}
   #pixel-canvas{height:580px;}
-  .about-grid{grid-template-columns:1fr;gap:40px}
-  .skills-grid{grid-template-columns:1fr 1fr;}
-  .os-folders{grid-template-columns:1fr}
+  .os-folders{grid-template-columns:1fr 1fr;}
   .work-layout-scaler{transform:scale(0.65);transform-origin:center center;height:580px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-230px);}
   .sw-title{font-size:clamp(30px,6vw,48px);}
@@ -568,14 +675,22 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   #contact{margin-top:100px;}
   #snake-transition{height:400px;}
   footer{padding:16px 20px;}
+  
+  /* Mobile timeline fix: shift and keep items responsive */
+  .timeline-container { transform: translateX(-40px); }
+  .timeline-item.left {
+    right: auto; left: 100%;
+    margin-right: 0; margin-left: 15px;
+    justify-content: flex-start;
+  }
+  .timeline-item.left .timeline-dash { margin-left: 0; margin-right: 15px; order: unset; }
+  .timeline-item.left .timeline-content { order: unset; text-align: left; }
 }
 
 /* Phones */
 @media(max-width:700px){
   .hero-name{font-size:clamp(18px, 5.5vw, 60px);letter-spacing:-.05em;gap:.12em;}
   #hero-name-wrap{bottom:36px;}
-
-  /* Work: layout móvil apilado */
   .work-layout-scaler{
     height:auto;
     min-height:600px;
@@ -636,7 +751,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     width:120px;
   }
   #snake-transition{height:300px;}
-  /* Espacio reducido móvil pequeño: original era 825px × 0.5 aprox */
   #about .section-inner{padding-top:360px;padding-bottom:160px;}
   #pixel-canvas{height:460px;top:-80px;}
 }
@@ -646,7 +760,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .hero-name{font-size:clamp(16px, 5.5vw, 40px);}
   .hero-sub-text{font-size:clamp(24px,8vw,38px)}
   .cbig{font-size:clamp(38px,11vw,60px)}
-  .skills-grid{grid-template-columns:1fr}
   .socials{gap:20px}
   body{cursor:auto}
   #cur,#cur-ring{display:none}
@@ -671,6 +784,11 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .mobile-nav a{font-size:34px;}
   #contact{margin-top:60px;}
   #snake-transition{height:240px;}
+
+  /* Timeline mobile adjustments */
+  .timeline-container { transform: translateX(-60px); }
+  .timeline-item { width: 160px; font-size: 11px; }
+  .skills-title { margin-bottom: 40px; }
 }
 
 /* Ultra small */
@@ -744,25 +862,92 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   <canvas id="pixel-canvas"></canvas>
   <div class="glow-bg" id="about-glow"><div class="glow-orb"></div></div>
   <div class="section-inner">
-    <div class="about-grid">
-      <div>
-        <span class="s-num reveal">01</span>
-        <h2 class="about-h reveal" data-es="Quién<br>soy" data-en="Who<br>I am">Who<br>I am</h2>
-      </div>
-      <div>
-        <p class="about-p reveal"
-           data-es="Trabajo en la intersección entre <strong>IA</strong>, experiencias interactivas y diseño de sistemas. Cada proyecto es un experimento — un intento de que la tecnología se sienta humana, intuitiva, inevitable."
-           data-en="I work at the intersection of <strong>AI</strong>, interactive experiences and systems design. Each project is an experiment — an attempt to make technology feel human, intuitive, inevitable.">
-          I work at the intersection of <strong>AI</strong>, interactive experiences and systems design. Each project is an experiment — an attempt to make technology feel human, intuitive, inevitable.
+    
+    <div class="about-header-new">
+      <h2 class="about-h reveal" data-es="Who<br>I am <span style='color:var(--green)'>?</span>" data-en="Who<br>I am <span style='color:var(--green)'>?</span>">Who<br>I am <span style="color:var(--green)">?</span></h2>
+      <div class="about-p-box reveal">
+        <p class="about-p"
+           data-es="Me especializo en la intersección entre <strong>IA</strong>, visión computacional y desarrollo de bajo nivel. Cada proyecto es un desafío de precisión — desde modelos predictivos y segmentación de imágenes, hasta la optimización en C y Assembly."
+           data-en="I specialize at the intersection of <strong>AI</strong>, computer vision, and low-level development. Each project is a challenge of precision — from predictive models and image segmentation to C and Assembly optimization.">
+          I specialize at the intersection of <strong>AI</strong>, computer vision, and low-level development. Each project is a challenge of precision — from predictive models and image segmentation to C and Assembly optimization.
         </p>
-        <div class="skills-grid reveal">
-          <div class="sk"><p class="sk-label" data-es="Disciplina" data-en="Discipline">Discipline</p><p class="sk-val">AI Engineering</p></div>
-          <div class="sk"><p class="sk-label" data-es="Especialidad" data-en="Specialty">Specialty</p><p class="sk-val">LLMs &amp; Agentes</p></div>
-          <div class="sk"><p class="sk-label">Stack</p><p class="sk-val">Python · TypeScript</p></div>
-          <div class="sk"><p class="sk-label" data-es="Ubicación" data-en="Based in">Based in</p><p class="sk-val">Buenos Aires, ARG</p></div>
-        </div>
       </div>
     </div>
+
+    <div class="skills-wrapper reveal">
+      <h3 class="skills-title">Skills</h3>
+      <div class="timeline-container" id="timeline-container">
+        
+        <div class="timeline-track">
+          <div class="track-knob top" id="knob-top"></div>
+          <div class="track-knob bottom" id="knob-bottom"></div>
+        </div>
+        
+        <div class="timeline-fill" id="timeline-fill"></div>
+
+        <div class="timeline-item right" data-prog="0.08" style="top: 8%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">AI Engineering</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.16" style="top: 16%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Machine Learning</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.24" style="top: 24%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Neural Networks</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.32" style="top: 32%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Computer Vision</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.40" style="top: 40%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Image Segmentation</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.48" style="top: 48%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Data Science</div>
+        </div>
+
+        <div class="timeline-item right" data-prog="0.56" style="top: 56%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Yield Prediction Models</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.64" style="top: 64%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Python & TypeScript</div>
+        </div>
+
+        <div class="timeline-item right" data-prog="0.72" style="top: 72%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">C & Assembly (NASM)</div>
+        </div>
+
+        <div class="timeline-item left" data-prog="0.80" style="top: 80%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Linux Shell Scripting</div>
+        </div>
+
+        <div class="timeline-item right" data-prog="0.88" style="top: 88%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">Database Design</div>
+        </div>
+
+        <div class="timeline-item left" data-prog="0.96" style="top: 96%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content">High-Performance Computing</div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -927,7 +1112,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
       <a href="https://github.com/tu-usuario" target="_blank" rel="noopener">GitHub</a>
       <a href="https://twitter.com/tu-usuario" target="_blank" rel="noopener">Twitter</a>
     </div>
-  </div>
   </div>
 </section>
 
@@ -1142,6 +1326,40 @@ function updateSnake() {
   }
 }
 
+/* ═══ SKILLS TIMELINE SCROLL-DRIVEN ═══ */
+function updateTimeline() {
+  const container = document.getElementById('timeline-container');
+  const fill = document.getElementById('timeline-fill');
+  const knobTop = document.getElementById('knob-top');
+  const knobBottom = document.getElementById('knob-bottom');
+  
+  if(!container || !fill) return;
+
+  const rect = container.getBoundingClientRect();
+  const wh = window.innerHeight;
+
+  const triggerPoint = wh * 0.6;
+  let prog = (triggerPoint - rect.top) / rect.height;
+  prog = Math.max(0, Math.min(1, prog));
+
+  fill.style.height = (prog * 100) + '%';
+
+  if(prog > 0.02) knobTop.classList.add('filled');
+  else knobTop.classList.remove('filled');
+
+  if(prog >= 0.99) knobBottom.classList.add('filled');
+  else knobBottom.classList.remove('filled');
+
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    const itemProg = parseFloat(item.dataset.prog);
+    if(prog >= itemProg) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+}
+
 /* ═══ SCROLL HANDLER PRINCIPAL ═══ */
 function onScroll(){
   const pinTop = heroPinEl.getBoundingClientRect().top + window.scrollY;
@@ -1166,6 +1384,7 @@ function onScroll(){
 
   updateCanvasRain();
   updateSnake();
+  updateTimeline();
 }
 window.addEventListener('scroll', onScroll, {passive:true});
 
