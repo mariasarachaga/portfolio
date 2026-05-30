@@ -125,7 +125,7 @@ nav.scrolled{
   position:absolute;inset:0;
   background:var(--blue);
   opacity:0;
-  transition:opacity 0.7s ease;
+  transition:opacity 0.5s ease;
   z-index:1;
 }
 
@@ -167,7 +167,7 @@ nav.scrolled{
 .hero-eyebrow{
   position:absolute;top:120px;left:56px;
   font-family:var(--fm);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--muted);opacity:0;animation:fadeIn .9s ease forwards .4s;
+  color:var(--muted);opacity:0;animation:fadeIn .6s ease forwards .2s;
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
@@ -181,7 +181,7 @@ nav.scrolled{
 }
 .name-word{
   display:inline-block;opacity:0;transform:translateY(30px);
-  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+  transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);
   will-change:transform,opacity;
 }
 .name-word.show{opacity:1;transform:translateY(0)}
@@ -191,11 +191,13 @@ nav.scrolled{
   content:'';position:absolute;bottom:-6px;left:0;
   width:0;height:2px;
   background:var(--coral);
-  opacity:.7;transition:width 1.1s cubic-bezier(.16,1,.3,1) .6s;
+  opacity:.7;transition:width .6s cubic-bezier(.16,1,.3,1) .4s;
 }
 #nw-last.show::after{width:100%}
-.name-word#nw-first.split{opacity:0 !important;transform:translateX(55vw) !important;transition:transform 1.0s cubic-bezier(.16,1,.3,1),opacity .65s ease .05s !important;}
-.name-word#nw-last.split{opacity:0 !important;transform:translateX(-55vw) !important;transition:transform 1.0s cubic-bezier(.16,1,.3,1),opacity .65s ease .05s !important;}
+
+/* --- Animaciones más rápidas para scroll --- */
+.name-word#nw-first.split{opacity:0 !important;transform:translateX(55vw) !important;transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease !important;}
+.name-word#nw-last.split{opacity:0 !important;transform:translateX(-55vw) !important;transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease !important;}
 #nw-last.split::after{width:0;transition:none;}
 
 .hero-sub{
@@ -217,7 +219,7 @@ nav.scrolled{
   line-height: 1.2;
   color: var(--text);
   overflow: visible;
-  transition: color 0.6s ease;
+  transition: color 0.4s ease;
 }
 .word {
   display: inline-block;
@@ -229,14 +231,10 @@ nav.scrolled{
 .word > span {
   display: inline-block;
   transform: translateY(150%); 
-  transition: transform .3s cubic-bezier(.16,1,.3,1);
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
 }
 .word.in > span {
-  animation: wordUp .75s cubic-bezier(.16,1,.3,1) forwards;
-}
-@keyframes wordUp {
-  from { transform: translateY(150%); }
-  to { transform: translateY(0); }
+  transform: translateY(0);
 }
 
 /* ═══ GENERAL SECTIONS ═══ */
@@ -307,26 +305,30 @@ section{position:relative;overflow:visible;}
 }
 
 .skills-wrapper {
-  margin-top: 380px; /* Aumentado para dar el respiro visual de ~10-15cm */
+  margin-top: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
+.skills-wrapper.first-skill {
+  margin-top: 380px;
+}
+
 .skills-title {
   font-family: var(--fd);
   font-size: clamp(36px, 5vw, 54px);
-  color: var(--green); /* Modificado a verde */
+  color: var(--green);
   margin-bottom: 70px;
   font-weight: 700;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 /* Timeline Base */
 .timeline-container {
   position: relative;
   width: 8px;
-  height: 900px; /* Altura aumentada para alojar los 12 skills */
 }
 .timeline-track {
   position: absolute; inset: 0;
@@ -336,15 +338,14 @@ section{position:relative;overflow:visible;}
 }
 .timeline-fill {
   position: absolute; top: 0; left: 0; right: 0;
-  background: var(--green); /* Modificado a verde */
+  background: var(--green);
   border-radius: 10px;
   height: 0%;
   transition: height 0.1s ease-out;
-  box-shadow: 0 0 15px rgba(144,238,144,0.5); /* Sombra verde */
+  box-shadow: 0 0 15px rgba(144,238,144,0.5);
   z-index: 1;
 }
 
-/* Track End Knobs (Empty circles that fill up) */
 .track-knob {
   position: absolute; left: 50%; transform: translateX(-50%);
   width: 16px; height: 16px;
@@ -358,12 +359,11 @@ section{position:relative;overflow:visible;}
 .track-knob.bottom { bottom: -16px; }
 
 .track-knob.filled {
-  background: var(--green); /* Modificado a verde */
+  background: var(--green);
   border-color: var(--green);
   box-shadow: 0 0 10px rgba(144,238,144,0.6);
 }
 
-/* Timeline Items */
 .timeline-item {
   position: absolute;
   display: flex; align-items: center;
@@ -378,7 +378,7 @@ section{position:relative;overflow:visible;}
 }
 .timeline-item.active {
   opacity: 1;
-  color: var(--green); /* Modificado a verde */
+  color: var(--green);
   text-shadow: 0 0 8px rgba(144,238,144,0.3);
 }
 .timeline-item.right {
@@ -396,7 +396,7 @@ section{position:relative;overflow:visible;}
   transition: background 0.4s ease, width 0.4s ease, box-shadow 0.4s ease;
 }
 .timeline-item.active .timeline-dash {
-  background: var(--green); /* Modificado a verde */
+  background: var(--green);
   width: 25px;
   box-shadow: 0 0 8px rgba(144,238,144,0.6);
 }
@@ -404,15 +404,14 @@ section{position:relative;overflow:visible;}
 .timeline-item.left .timeline-dash { margin-left: 15px; order: 2; }
 .timeline-item.left .timeline-content { order: 1; text-align: right; }
 
-/* ═══ LÍNEA SERPENTINA ═══ */
-#snake-transition {
+/* ═══ TRANSICIÓN RED NEURONAL ═══ */
+#nn-canvas {
   position: relative;
   width: 100%;
-  height: 700px;
-  overflow: hidden;
-  pointer-events: none;
+  height: 600px;
   z-index: 2;
-  margin-top: -100px;
+  margin-top: -100px; 
+  pointer-events: none; /* Dejamos que los eventos de mouse pasen al documento */
 }
 
 /* ═══ WORK ═══ */
@@ -455,6 +454,12 @@ section{position:relative;overflow:visible;}
   letter-spacing:-0.04em;
   animation:pulse-glow 3s ease-in-out infinite alternate;
 }
+
+/* Modificación para texto en español */
+html[lang="es"] .sw-title {
+  font-size: clamp(28px, 4vw, 44px);
+}
+
 @keyframes pulse-glow{
   0%{transform:scale(1);text-shadow:0 0 10px rgba(255,255,255,0.1);}
   100%{transform:scale(1.05);text-shadow:0 0 35px rgba(255,255,255,0.7);}
@@ -624,8 +629,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 .reveal.visible{opacity:1;transform:none}
 
 /* ═══ RESPONSIVE BREAKPOINTS ═══ */
-
-/* Large tablets / small desktops */
 @media(max-width:1200px){
   .hero-name{font-size:clamp(22px, 6vw, 90px);}
   .work-layout-scaler{transform:scale(0.9);transform-origin:center center;height:780px;}
@@ -637,7 +640,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .rf-pos{transform:rotate(var(--rot)) translateY(-260px);}
 }
 
-/* Tablets */
 @media(max-width:960px){
   nav,nav.scrolled{padding:20px 28px}
   .nav-links{display:none}
@@ -651,14 +653,13 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-folders{grid-template-columns:1fr 1fr}
   .contact-pre,.contact-content{padding:60px 28px 40px}
   footer{padding:20px 28px}
-  #snake-transition{height:500px;}
+  #nn-canvas{height:500px;}
   .work-layout-scaler{transform:scale(0.75);transform-origin:center center;height:650px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-250px);}
   .about-h{font-size:clamp(36px,5.5vw,60px);}
   .about-p{font-size:18px;}
 }
 
-/* Small tablets / large phones */
 @media(max-width:768px){
   .hero-name{font-size:clamp(20px, 6vw, 64px);letter-spacing:-.05em;gap:.12em;}
   #hero-name-wrap{bottom:48px;}
@@ -670,13 +671,13 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .work-layout-scaler{transform:scale(0.65);transform-origin:center center;height:580px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-230px);}
   .sw-title{font-size:clamp(30px,6vw,48px);}
+  html[lang="es"] .sw-title { font-size: clamp(26px, 5vw, 36px); }
   .contact-pre-big{font-size:clamp(32px,6vw,60px);}
   .cbig{font-size:clamp(44px,10vw,80px);}
   #contact{margin-top:100px;}
-  #snake-transition{height:400px;}
+  #nn-canvas{height:400px;}
   footer{padding:16px 20px;}
   
-  /* Mobile timeline fix: shift and keep items responsive */
   .timeline-container { transform: translateX(-40px); }
   .timeline-item.left {
     right: auto; left: 100%;
@@ -687,7 +688,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .timeline-item.left .timeline-content { order: unset; text-align: left; }
 }
 
-/* Phones */
 @media(max-width:700px){
   .hero-name{font-size:clamp(18px, 5.5vw, 60px);letter-spacing:-.05em;gap:.12em;}
   #hero-name-wrap{bottom:36px;}
@@ -750,12 +750,11 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     transform:none;
     width:120px;
   }
-  #snake-transition{height:300px;}
+  #nn-canvas{height:300px;}
   #about .section-inner{padding-top:360px;padding-bottom:160px;}
   #pixel-canvas{height:460px;top:-80px;}
 }
 
-/* Extra small phones */
 @media(max-width:540px){
   .hero-name{font-size:clamp(16px, 5.5vw, 40px);}
   .hero-sub-text{font-size:clamp(24px,8vw,38px)}
@@ -783,15 +782,13 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-header{flex-direction:column;align-items:flex-start;gap:8px;}
   .mobile-nav a{font-size:34px;}
   #contact{margin-top:60px;}
-  #snake-transition{height:240px;}
+  #nn-canvas{height:240px;}
 
-  /* Timeline mobile adjustments */
   .timeline-container { transform: translateX(-60px); }
   .timeline-item { width: 160px; font-size: 11px; }
   .skills-title { margin-bottom: 40px; }
 }
 
-/* Ultra small */
 @media(max-width:380px){
   .hero-name{font-size:clamp(12px, 5vw, 32px);}
   .cbig{font-size:clamp(32px,12vw,52px);}
@@ -864,7 +861,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   <div class="section-inner">
     
     <div class="about-header-new">
-      <h2 class="about-h reveal" data-es="Who<br>I am <span style='color:var(--green)'>?</span>" data-en="Who<br>I am <span style='color:var(--green)'>?</span>">Who<br>I am <span style="color:var(--green)">?</span></h2>
+      <h2 class="about-h reveal" data-es="<span style='color:var(--green)'>¿</span>Quién<br>soy <span style='color:var(--green)'>?</span>" data-en="Who<br>am I <span style='color:var(--green)'>?</span>">Who<br>am I <span style="color:var(--green)">?</span></h2>
       <div class="about-p-box reveal">
         <p class="about-p"
            data-es="Me especializo en la intersección entre <strong>IA</strong>, visión computacional y desarrollo de bajo nivel. Cada proyecto es un desafío de precisión — desde modelos predictivos y segmentación de imágenes, hasta la optimización en C y Assembly."
@@ -874,85 +871,92 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
       </div>
     </div>
 
-    <div class="skills-wrapper reveal">
-      <h3 class="skills-title">Skills</h3>
-      <div class="timeline-container" id="timeline-container">
-        
+    <div class="skills-wrapper first-skill reveal">
+      <h3 class="skills-title" data-es="Con qué trabajo" data-en="What I work with">What I work with</h3>
+      <div class="timeline-container" style="height: 700px;">
         <div class="timeline-track">
-          <div class="track-knob top" id="knob-top"></div>
-          <div class="track-knob bottom" id="knob-bottom"></div>
+          <div class="track-knob top"></div>
+          <div class="track-knob bottom"></div>
+        </div>
+        <div class="timeline-fill"></div>
+        
+        <div class="timeline-item right" data-prog="0.12" style="top: 12%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Machine Learning (Supervisado & No Supervisado)" data-en="Machine Learning (Supervised & Unsupervised)">Machine Learning (Supervised & Unsupervised)</div>
         </div>
         
-        <div class="timeline-fill" id="timeline-fill"></div>
-
-        <div class="timeline-item right" data-prog="0.08" style="top: 8%;">
+        <div class="timeline-item left" data-prog="0.25" style="top: 25%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">AI Engineering</div>
+          <div class="timeline-content" data-es="Deep Learning (MLP, CNNs, Transfer Learning)" data-en="Deep Learning (MLP, CNNs, Transfer Learning)">Deep Learning (MLP, CNNs, Transfer Learning)</div>
         </div>
         
-        <div class="timeline-item left" data-prog="0.16" style="top: 16%;">
+        <div class="timeline-item right" data-prog="0.37" style="top: 37%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Machine Learning</div>
+          <div class="timeline-content" data-es="Computer Vision (Extracción de Características, Visión 3D, Detección de Objetos)" data-en="Computer Vision (Feature Extraction, 3D Vision, Object Detection)">Computer Vision (Feature Extraction, 3D Vision, Object Detection)</div>
         </div>
         
-        <div class="timeline-item right" data-prog="0.24" style="top: 24%;">
+        <div class="timeline-item left" data-prog="0.50" style="top: 50%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Neural Networks</div>
+          <div class="timeline-content" data-es="Procesamiento & Segmentación de Imágenes" data-en="Image Processing & Segmentation">Image Processing & Segmentation</div>
         </div>
         
-        <div class="timeline-item left" data-prog="0.32" style="top: 32%;">
+        <div class="timeline-item right" data-prog="0.62" style="top: 62%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Computer Vision</div>
+          <div class="timeline-content" data-es="Modelado Estadístico e Inferencia" data-en="Statistical Modeling & Inference">Statistical Modeling & Inference</div>
         </div>
         
-        <div class="timeline-item right" data-prog="0.40" style="top: 40%;">
+        <div class="timeline-item left" data-prog="0.75" style="top: 75%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Image Segmentation</div>
+          <div class="timeline-content" data-es="Modelado Predictivo" data-en="Predictive Modeling">Predictive Modeling</div>
+        </div>
+
+        <div class="timeline-item right" data-prog="0.87" style="top: 87%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Ingeniería de Características" data-en="Feature Engineering">Feature Engineering</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-wrapper reveal">
+      <h3 class="skills-title" data-es="SISTEMAS Y SOFTWARE" data-en="SYSTEMS & SOFTWARE">SYSTEMS & SOFTWARE</h3>
+      <div class="timeline-container" style="height: 500px;">
+        <div class="timeline-track">
+          <div class="track-knob top"></div>
+          <div class="track-knob bottom"></div>
+        </div>
+        <div class="timeline-fill"></div>
+        
+        <div class="timeline-item right" data-prog="0.16" style="top: 16%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Algoritmos & Estructuras de Datos" data-en="Algorithms & Data Structures">Algorithms & Data Structures</div>
         </div>
         
-        <div class="timeline-item left" data-prog="0.48" style="top: 48%;">
+        <div class="timeline-item left" data-prog="0.33" style="top: 33%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Data Science</div>
-        </div>
-
-        <div class="timeline-item right" data-prog="0.56" style="top: 56%;">
-          <div class="timeline-dash"></div>
-          <div class="timeline-content">Yield Prediction Models</div>
+          <div class="timeline-content" data-es="Sistemas Distribuidos & Redes" data-en="Distributed Systems & Networking">Distributed Systems & Networking</div>
         </div>
         
-        <div class="timeline-item left" data-prog="0.64" style="top: 64%;">
+        <div class="timeline-item right" data-prog="0.50" style="top: 50%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Python & TypeScript</div>
+          <div class="timeline-content" data-es="Sistemas Operativos & Programación de Bajo Nivel" data-en="Operating Systems & Low-Level Programming">Operating Systems & Low-Level Programming</div>
         </div>
-
-        <div class="timeline-item right" data-prog="0.72" style="top: 72%;">
+        
+        <div class="timeline-item left" data-prog="0.66" style="top: 66%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">C & Assembly (NASM)</div>
+          <div class="timeline-content" data-es="Sistemas de Bases de Datos (SQL & NoSQL)" data-en="Database Systems (SQL & NoSQL)">Database Systems (SQL & NoSQL)</div>
         </div>
-
-        <div class="timeline-item left" data-prog="0.80" style="top: 80%;">
+        
+        <div class="timeline-item right" data-prog="0.83" style="top: 83%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content">Linux Shell Scripting</div>
+          <div class="timeline-content" data-es="Ingeniería de Software (POO, Funcional, Patrones, Testing)" data-en="Software Engineering (OOP, Functional, Design Patterns, Testing)">Software Engineering (OOP, Functional, Design Patterns, Testing)</div>
         </div>
-
-        <div class="timeline-item right" data-prog="0.88" style="top: 88%;">
-          <div class="timeline-dash"></div>
-          <div class="timeline-content">Database Design</div>
-        </div>
-
-        <div class="timeline-item left" data-prog="0.96" style="top: 96%;">
-          <div class="timeline-dash"></div>
-          <div class="timeline-content">High-Performance Computing</div>
-        </div>
-
       </div>
     </div>
 
   </div>
 </section>
 
-<div id="snake-transition">
-  </div>
+<canvas id="nn-canvas"></canvas>
 
 <section id="work">
   <div id="work-bg"></div>
@@ -1167,23 +1171,26 @@ const heroPinEl = document.getElementById('hero-pin');
 const nwFirst = document.getElementById('nw-first');
 const nwLast = document.getElementById('nw-last');
 const heroSubEl = document.getElementById('heroSub');
-let phase = 0;
+let phase = 1;
 let lang = 'en';
 
-const WORDS_ES = ['Dándo','a','las','maquinas','un','toque','humano'];
+const WORDS_ES = ['Dándole','a','las','máquinas','un','toque','humano'];
 const WORDS_EN = ['Giving','machines','a','human','touch'];
 
 function buildWords(words){
   const p = document.getElementById('heroSubText'); p.innerHTML = '';
-  words.forEach(w => {
+  words.forEach((w, i) => {
     const wd = document.createElement('span'); wd.className = 'word';
-    const inner = document.createElement('span'); inner.textContent = w;
+    const inner = document.createElement('span'); 
+    inner.textContent = w;
+    inner.style.transitionDelay = (i * 0.04) + 's';
     wd.appendChild(inner); p.appendChild(wd);
   });
 }
 
 function applyLang(l){
   lang = l;
+  document.documentElement.lang = l;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = el.dataset[l];
@@ -1198,7 +1205,7 @@ function applyLang(l){
     el.placeholder = l==='es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
   });
   buildWords(l==='es' ? WORDS_ES : WORDS_EN);
-  if(phase >= 3){ document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.add('in')); }
+  if(phase === 3){ document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.add('in')); }
   [0,1,2].forEach(i => {
     const msg = document.querySelector('#om'+i+' .omsg-ai');
     if(msg && msg.dataset[l]) msg.textContent = msg.dataset[l];
@@ -1211,24 +1218,25 @@ applyLang(lang);
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
 
 setTimeout(() => {
-  if(phase >= 1) return; phase = 1;
+  if(phase !== 1) return;
   nwFirst.classList.add('show'); nwLast.classList.add('show');
 }, 250);
 
-function doSplit(){ if(phase>=2) return; phase=2; nwFirst.classList.add('split'); nwLast.classList.add('split'); }
-function doSubtitle(){
-  if(phase>=3) return; phase=3;
-  heroSubEl.classList.add('show');
-  document.querySelectorAll('#heroSubText .word').forEach((w,i) => { setTimeout(()=>w.classList.add('in'), i*105); });
-}
-function undoSubtitle(){
-  if(phase<3) return; phase=2;
-  heroSubEl.classList.remove('show');
-  document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.remove('in'));
-}
-function undoSplit(){
-  if(phase<2) return; phase=1;
-  nwFirst.classList.remove('split'); nwLast.classList.remove('split');
+function setHeroPhase(newPhase) {
+  if (newPhase === 3) {
+    nwFirst.classList.add('split'); nwLast.classList.add('split');
+    heroSubEl.classList.add('show');
+    document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.add('in'));
+  } else if (newPhase === 2) {
+    nwFirst.classList.add('split'); nwLast.classList.add('split');
+    heroSubEl.classList.remove('show');
+    document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.remove('in'));
+  } else {
+    nwFirst.classList.remove('split'); nwLast.classList.remove('split');
+    heroSubEl.classList.remove('show');
+    document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.remove('in'));
+  }
+  phase = newPhase;
 }
 
 /* ═══ CANVAS PÍXELES ═══ */
@@ -1276,87 +1284,120 @@ function updateCanvasRain() {
   });
 }
 
-/* ═══ SERPIENTE SVG scroll-driven ═══ */
-let snakeInited = false;
-let snakeTotalLen = 0;
-let snakeThinLen = 0;
+/* ═══ RED NEURONAL INTERACTIVA ═══ */
+/* ═══ RED NEURONAL INTERACTIVA MEJORADA ═══ */
+const nnCanvas = document.getElementById('nn-canvas');
+const nnCtx = nnCanvas.getContext('2d');
+let particles = [];
+const numParticles = 350; // Aumentado para mayor densidad
+const connectionDistance = 110; // Distancia ajustada para clusters
+const mouseGlowRadius = 200;
 
-function initSnake() {
-  const mainPath = document.getElementById('snake-draw');
-  const thinPath = document.getElementById('snake-thin');
-  if(!mainPath || !thinPath) return;
-  snakeTotalLen = mainPath.getTotalLength();
-  snakeThinLen  = thinPath.getTotalLength();
-  mainPath.style.strokeDasharray  = snakeTotalLen;
-  mainPath.style.strokeDashoffset = snakeTotalLen;
-  thinPath.style.strokeDasharray  = snakeThinLen;
-  thinPath.style.strokeDashoffset = snakeThinLen;
-  snakeInited = true;
-}
-
-function updateSnake() {
-  if(!snakeInited) return;
-  const el = document.getElementById('snake-transition');
-  if(!el) return;
-  const rect = el.getBoundingClientRect();
-  const wh = window.innerHeight;
-  let prog = (wh - rect.top) / (wh + rect.height * 0.5);
-  prog = Math.max(0, Math.min(1, prog));
-
-  const mainPath = document.getElementById('snake-draw');
-  const thinPath = document.getElementById('snake-thin');
-
-  mainPath.style.strokeDashoffset = snakeTotalLen * (1 - prog);
-  thinPath.style.strokeDashoffset = snakeThinLen  * (1 - prog * 0.85);
-
-  const dots = ['sd1','sd2','sd3','sd4'];
-  dots.forEach((id, i) => {
-    const dot = document.getElementById(id);
-    if(!dot) return;
-    const threshold = (i + 1) * 0.22;
-    dot.style.opacity = prog > threshold ? Math.min(1, (prog - threshold) * 6) : 0;
-    dot.style.r = prog > threshold ? 5 + (prog - threshold) * 4 : 3;
-  });
-
-  const glowPath = document.getElementById('snake-glow-path');
-  if(glowPath){
-    const glowLen = glowPath.getTotalLength ? glowPath.getTotalLength() : snakeTotalLen;
-    glowPath.style.strokeDasharray  = glowLen;
-    glowPath.style.strokeDashoffset = glowLen * (1 - prog * 0.9);
+function initNN() {
+  if(!nnCanvas) return;
+  nnCanvas.width = window.innerWidth;
+  nnCanvas.height = nnCanvas.offsetHeight || 600;
+  particles = [];
+  for (let i = 0; i < numParticles; i++) {
+    particles.push({
+      x: Math.random() * nnCanvas.width,
+      y: Math.random() * nnCanvas.height,
+      vx: (Math.random() - 0.5) * 0.4, // Movimiento más lento y orgánico
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 3 + 1.5 // Neuronas de distinto tamaño
+    });
   }
 }
 
-/* ═══ SKILLS TIMELINE SCROLL-DRIVEN ═══ */
-function updateTimeline() {
-  const container = document.getElementById('timeline-container');
-  const fill = document.getElementById('timeline-fill');
-  const knobTop = document.getElementById('knob-top');
-  const knobBottom = document.getElementById('knob-bottom');
+function animateNN() {
+  requestAnimationFrame(animateNN);
+  if(!nnCanvas) return;
   
-  if(!container || !fill) return;
+  const rect = nnCanvas.getBoundingClientRect();
+  if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+  
+  nnCtx.clearRect(0, 0, nnCanvas.width, nnCanvas.height);
+  
+  const mouseCanvasX = mx - rect.left;
+  const mouseCanvasY = my - rect.top;
 
-  const rect = container.getBoundingClientRect();
-  const wh = window.innerHeight;
+  for (let i = 0; i < numParticles; i++) {
+    let p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
 
-  const triggerPoint = wh * 0.6;
-  let prog = (triggerPoint - rect.top) / rect.height;
-  prog = Math.max(0, Math.min(1, prog));
+    if (p.x < 0 || p.x > nnCanvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > nnCanvas.height) p.vy *= -1;
 
-  fill.style.height = (prog * 100) + '%';
+    for (let j = i + 1; j < numParticles; j++) {
+      let p2 = particles[j];
+      let dx = p.x - p2.x;
+      let dy = p.y - p2.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
 
-  if(prog > 0.02) knobTop.classList.add('filled');
-  else knobTop.classList.remove('filled');
-
-  if(prog >= 0.99) knobBottom.classList.add('filled');
-  else knobBottom.classList.remove('filled');
-
-  document.querySelectorAll('.timeline-item').forEach(item => {
-    const itemProg = parseFloat(item.dataset.prog);
-    if(prog >= itemProg) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
+      if (dist < connectionDistance) {
+        let mouseDist = Math.sqrt(Math.pow((p.x+p2.x)/2 - mouseCanvasX, 2) + Math.pow((p.y+p2.y)/2 - mouseCanvasY, 2));
+        let opacity = 1 - (dist / connectionDistance);
+        
+        nnCtx.beginPath();
+        nnCtx.moveTo(p.x, p.y);
+        nnCtx.lineTo(p2.x, p2.y);
+        
+        if (mouseDist < mouseGlowRadius) {
+          nnCtx.strokeStyle = `rgba(244, 70, 183, ${opacity * 1.5})`; 
+          nnCtx.lineWidth = 1.2;
+        } else {
+          nnCtx.strokeStyle = `rgba(71, 73, 227, ${opacity * 0.4})`;
+          nnCtx.lineWidth = 0.6;
+        }
+        nnCtx.stroke();
+      }
     }
+    
+    // Nodos (Neuronas)
+    nnCtx.beginPath();
+    nnCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    nnCtx.fillStyle = 'rgba(240, 237, 232, 0.6)';
+    nnCtx.fill();
+  }
+}
+
+window.addEventListener('resize', initNN);
+window.addEventListener('load', () => { initNN(); animateNN(); });
+
+
+/* ═══ SKILLS TIMELINE SCROLL-DRIVEN (MULTIPLE BARS) ═══ */
+function updateTimeline() {
+  document.querySelectorAll('.timeline-container').forEach(container => {
+    const fill = container.querySelector('.timeline-fill');
+    const knobTop = container.querySelector('.track-knob.top');
+    const knobBottom = container.querySelector('.track-knob.bottom');
+    
+    if(!fill || !knobTop || !knobBottom) return;
+
+    const rect = container.getBoundingClientRect();
+    const wh = window.innerHeight;
+
+    const triggerPoint = wh * 0.6;
+    let prog = (triggerPoint - rect.top) / rect.height;
+    prog = Math.max(0, Math.min(1, prog));
+
+    fill.style.height = (prog * 100) + '%';
+
+    if(prog > 0.02) knobTop.classList.add('filled');
+    else knobTop.classList.remove('filled');
+
+    if(prog >= 0.99) knobBottom.classList.add('filled');
+    else knobBottom.classList.remove('filled');
+
+    container.querySelectorAll('.timeline-item').forEach(item => {
+      const itemProg = parseFloat(item.dataset.prog);
+      if(prog >= itemProg) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
   });
 }
 
@@ -1367,14 +1408,14 @@ function onScroll(){
   const raw = window.scrollY - pinTop;
   const progress = Math.min(Math.max(raw / scrollRoom, 0), 1);
 
-  if(progress >= 0.35 && phase < 2) doSplit();
-  if(progress >= 0.65 && phase < 3) doSubtitle();
-  if(progress < 0.65 && phase === 3) undoSubtitle();
-  if(progress < 0.35 && phase === 2) undoSplit();
+  let nextPhase = 1;
+  if(progress >= 0.15) nextPhase = 2;
+  if(progress >= 0.35) nextPhase = 3;
+  if(phase !== nextPhase) setHeroPhase(nextPhase);
 
   const heroBlueBg = document.getElementById('hero-blue-bg');
   const subTextContainer = document.getElementById('heroSubText');
-  if(progress >= 0.55 && progress <= 0.90){
+  if(progress >= 0.25 && progress <= 0.90){
     if(heroBlueBg) heroBlueBg.style.opacity = '1';
     if(subTextContainer) subTextContainer.style.color = '#90EE90';
   } else {
@@ -1383,7 +1424,6 @@ function onScroll(){
   }
 
   updateCanvasRain();
-  updateSnake();
   updateTimeline();
 }
 window.addEventListener('scroll', onScroll, {passive:true});
@@ -1477,10 +1517,10 @@ function osChat(idx){
 document.querySelectorAll('.osend').forEach(btn => btn.addEventListener('click', ()=>osChat(parseInt(btn.dataset.idx))));
 [0,1,2].forEach(i => document.getElementById('oi'+i).addEventListener('keydown', e=>{ if(e.key==='Enter') osChat(i); }));
 
-/* Init serpiente después de que el DOM esté pintado */
+/* Iniciar Red Neuronal */
 window.addEventListener('load', () => {
-  initSnake();
-  updateSnake();
+  initNN();
+  animateNN();
 });
 </script>
 </body>
