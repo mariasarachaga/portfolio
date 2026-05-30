@@ -29,6 +29,8 @@ body{
   font-weight:400;
   overflow-x:hidden;
   cursor:none;
+  /* CAMBIO: overflow visible global para descendentes */
+  overflow-y: auto;
 }
 ::-webkit-scrollbar{width:1px}
 ::-webkit-scrollbar-track{background:var(--black)}
@@ -171,18 +173,68 @@ nav.scrolled{
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-#hero-name-wrap{position:absolute;bottom:80px;left:0;right:0;display:flex;justify-content:center;padding:0 32px;}
+/* CAMBIO: scroll indicator */
+#scroll-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: scrollHintFade 3s ease forwards 1s;
+  pointer-events: none;
+}
+@keyframes scrollHintFade {
+  0%   { opacity: 0; transform: translate(-50%, -50%); }
+  20%  { opacity: 1; transform: translate(-50%, calc(-50% + 0px)); }
+  70%  { opacity: 1; transform: translate(-50%, calc(-50% + 0px)); }
+  100% { opacity: 0; transform: translate(-50%, calc(-50% + 8px)); }
+}
+.scroll-hint-text {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-hint-arrow {
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: arrowBob 1.4s ease-in-out infinite;
+}
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(5px); opacity: 1; }
+}
+
+#hero-name-wrap{
+  position:absolute;bottom:80px;left:0;right:0;
+  display:flex;justify-content:center;padding:0 32px;
+  /* CAMBIO: overflow visible para descendentes */
+  overflow:visible;
+  padding-bottom: 16px;
+}
 .hero-name{
   display:flex;flex-direction:row;align-items:baseline;
   gap:.18em;font-family:var(--fd);
   font-size:clamp(22px, 5.5vw, 112px);
   font-weight:800;line-height:1;letter-spacing:-.04em;
   color:var(--text);white-space:nowrap;max-width:100%;
+  /* CAMBIO: padding para descendentes */
+  padding-bottom: .15em;
+  overflow: visible;
 }
 .name-word{
   display:inline-block;opacity:0;transform:translateY(30px);
   transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);
   will-change:transform,opacity;
+  /* CAMBIO: overflow visible */
+  overflow: visible;
 }
 .name-word.show{opacity:1;transform:translateY(0)}
 #nw-last{position:relative;}
@@ -208,6 +260,8 @@ nav.scrolled{
   pointer-events:none;
   opacity:0;
   transition:opacity .3s ease;
+  /* CAMBIO: overflow visible para descendentes */
+  overflow: visible;
 }
 .hero-sub.show{opacity:1}
 .hero-sub-text {
@@ -219,6 +273,8 @@ nav.scrolled{
   color: var(--text);
   overflow: visible;
   transition: color 0.4s ease;
+  /* CAMBIO: padding para descendentes */
+  padding-bottom: .2em;
 }
 .word {
   display: inline-block;
@@ -226,11 +282,16 @@ nav.scrolled{
   vertical-align: bottom;
   -webkit-clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
   clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
+  /* CAMBIO: overflow visible */
+  overflow: visible;
 }
 .word > span {
   display: inline-block;
   transform: translateY(150%); 
   transition: transform .4s cubic-bezier(.16,1,.3,1);
+  /* CAMBIO: overflow visible para descendentes */
+  overflow: visible;
+  padding-bottom: .1em;
 }
 .word.in > span {
   transform: translateY(0);
@@ -278,8 +339,19 @@ section{position:relative;overflow:visible;}
 
 #about-glow .glow-orb{width:700px;height:700px;top:-10%;right:-15%;opacity:.38;animation:orbdrift 25s ease-in-out infinite alternate-reverse;}
 
-.about-h{font-family:var(--fd);font-size:clamp(44px,4.8vw,68px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--text);}
-.about-p{font-family:var(--fs);font-size:20px;line-height:1.88;color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:0;}
+.about-h{
+  font-family:var(--fd);font-size:clamp(44px,4.8vw,68px);font-weight:700;
+  letter-spacing:-.04em;line-height:.9;color:var(--text);
+  /* CAMBIO: overflow visible para descendentes */
+  overflow: visible;
+  padding-bottom: .1em;
+}
+/* CAMBIO: overflow visible global para textos con descendentes */
+.about-p{
+  font-family:var(--fs);font-size:20px;line-height:1.88;
+  color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:0;
+  overflow: visible;
+}
 .about-p strong{color:var(--text);font-style:normal;font-weight:400}
 
 .about-header-new {
@@ -333,14 +405,19 @@ section{position:relative;overflow:visible;}
   border-radius: 10px;
   background: transparent;
 }
+
+/* CAMBIO: animación de fill mucho más suave con will-change y transition más larga */
 .timeline-fill {
   position: absolute; top: 0; left: 0; right: 0;
   background: var(--green);
   border-radius: 10px;
   height: 0%;
-  transition: height 0.1s ease-out;
+  /* CAMBIO: transition suave, idéntica para ambas secciones */
+  transition: height 0.08s linear;
   box-shadow: 0 0 15px rgba(144,238,144,0.5);
   z-index: 1;
+  will-change: height;
+  transform: translateZ(0);
 }
 
 .track-knob {
@@ -401,7 +478,6 @@ section{position:relative;overflow:visible;}
 .timeline-item.left .timeline-dash { margin-left: 15px; order: 2; }
 .timeline-item.left .timeline-content { order: 1; text-align: right; }
 
-/* ═══ NN CANVAS — desktop perfecto, mobile arreglado ═══ */
 #nn-canvas {
   position: relative;
   width: 100%;
@@ -429,7 +505,8 @@ section{position:relative;overflow:visible;}
 
 #work .section-inner{padding:150px 0 200px;position:relative;z-index:5;}
 
-.work-layout-scaler{position:relative;width:100%;height:850px;overflow:hidden;}
+/* CAMBIO: radio del círculo aumentado (350px → 390px) */
+.work-layout-scaler{position:relative;width:100%;height:900px;overflow:hidden;}
 
 @keyframes orbit{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 @keyframes counter-orbit{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}
@@ -451,6 +528,9 @@ section{position:relative;overflow:visible;}
   font-weight:800;line-height:0.95;color:#fff;
   letter-spacing:-0.04em;
   animation:pulse-glow 3s ease-in-out infinite alternate;
+  /* CAMBIO: overflow visible para descendentes */
+  overflow: visible;
+  padding-bottom: .1em;
 }
 
 html[lang="es"] .sw-title {
@@ -462,7 +542,8 @@ html[lang="es"] .sw-title {
   100%{transform:scale(1.05);text-shadow:0 0 35px rgba(255,255,255,0.7);}
 }
 
-.rf-pos{position:absolute;transform:rotate(var(--rot)) translateY(-310px);}
+/* CAMBIO: radio aumentado de 310px a 390px */
+.rf-pos{position:absolute;transform:rotate(var(--rot)) translateY(-390px);}
 .rf-animator{position:absolute;top:0;left:0;animation:counter-orbit 45s linear infinite;}
 .rf-animator-inner{
   position:absolute;
@@ -521,7 +602,13 @@ html[lang="es"] .sw-title {
 #projects::after{display:none;}
 
 .os-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;}
-.os-title{font-family:var(--fd);font-size:clamp(36px,4.2vw,56px);font-weight:700;letter-spacing:-.04em;color:var(--text);}
+.os-title{
+  font-family:var(--fd);font-size:clamp(36px,4.2vw,56px);font-weight:700;
+  letter-spacing:-.04em;color:var(--text);
+  /* CAMBIO: overflow visible */
+  overflow: visible;
+  padding-bottom: .1em;
+}
 .os-hint{font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.55;padding-bottom:4px;}
 .os-desktop{border:1px solid rgba(240,237,232,.08);border-radius:12px;background:rgba(8,8,8,.6);overflow:hidden;backdrop-filter:blur(20px);}
 .os-titlebar{background:rgba(255,255,255,.024);border-bottom:1px solid rgba(240,237,232,.08);padding:12px 20px;display:flex;align-items:center;gap:10px;}
@@ -580,8 +667,19 @@ html[lang="es"] .sw-title {
 /* ═══ CONTACT ═══ */
 #contact{padding:0;border:none;position:relative;overflow:hidden;min-height:100vh;background:transparent;display:flex;flex-direction:column;justify-content:flex-end;margin-top:160px;}
 .contact-pre{padding:90px 56px 64px;position:relative;z-index:2;text-align:center;}
-.contact-pre-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;}
-.contact-pre-big{font-family:var(--fd);font-size:clamp(42px,7vw,96px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--text);}
+/* CAMBIO: color blanco para "Want to work together?" */
+.contact-pre-eyebrow{
+  font-family:var(--fm);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:#ffffff;
+  margin-bottom:20px;display:block;
+}
+.contact-pre-big{
+  font-family:var(--fd);font-size:clamp(42px,7vw,96px);font-weight:700;
+  letter-spacing:-.04em;line-height:.9;color:var(--text);
+  /* CAMBIO: overflow visible para descendentes */
+  overflow: visible;
+  padding-bottom: .2em;
+}
 .contact-circle{
   position:absolute;bottom:-100%;left:50%;
   width:220vmax;height:220vmax;background:var(--blue);border-radius:50%;
@@ -594,10 +692,13 @@ html[lang="es"] .sw-title {
 .cbig{
   font-family:var(--fd);font-size:clamp(56px,9.5vw,132px);
   font-weight:800;letter-spacing:-.05em;line-height:.85;
-  color:var(--coral);display:block;overflow:hidden;
-  padding-bottom:.25em;margin-bottom:-.25em;
+  color:var(--coral);display:block;
+  /* CAMBIO: overflow visible y padding para descendentes */
+  overflow: visible;
+  padding-bottom:.3em;
+  margin-bottom:-.25em;
 }
-.cbig span{display:inline-block;transform:translateY(110%)}
+.cbig span{display:inline-block;transform:translateY(110%);overflow:visible;}
 .contact-email{
   display:inline-block;margin-top:56px;
   font-family:var(--fd);font-size:16px;font-weight:700;
@@ -628,13 +729,14 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 /* ═══ RESPONSIVE BREAKPOINTS ═══ */
 @media(max-width:1200px){
   .hero-name{font-size:clamp(22px, 6vw, 90px);}
-  .work-layout-scaler{transform:scale(0.9);transform-origin:center center;height:780px;}
-  .rf-pos{transform:rotate(var(--rot)) translateY(-270px);}
+  /* CAMBIO: radio ajustado */
+  .work-layout-scaler{transform:scale(0.9);transform-origin:center center;height:820px;}
+  .rf-pos{transform:rotate(var(--rot)) translateY(-350px);}
 }
 
 @media(max-width:1100px){
-  .work-layout-scaler{transform:scale(0.82);transform-origin:center center;height:700px;}
-  .rf-pos{transform:rotate(var(--rot)) translateY(-260px);}
+  .work-layout-scaler{transform:scale(0.82);transform-origin:center center;height:740px;}
+  .rf-pos{transform:rotate(var(--rot)) translateY(-330px);}
 }
 
 @media(max-width:960px){
@@ -650,16 +752,25 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-folders{grid-template-columns:1fr 1fr}
   .contact-pre,.contact-content{padding:60px 28px 40px}
   footer{padding:20px 28px}
-  /* Mobile: canvas más pequeño y sin espacio extra */
   #nn-canvas{height:280px; margin-top:-40px;}
-  .work-layout-scaler{transform:scale(0.75);transform-origin:center center;height:650px;}
-  .rf-pos{transform:rotate(var(--rot)) translateY(-250px);}
+  .work-layout-scaler{transform:scale(0.75);transform-origin:center center;height:680px;}
+  .rf-pos{transform:rotate(var(--rot)) translateY(-310px);}
   .about-h{font-size:clamp(36px,5.5vw,60px);}
   .about-p{font-size:18px;}
 }
 
 @media(max-width:768px){
-  .hero-name{font-size:clamp(20px, 6vw, 64px);letter-spacing:-.05em;gap:.12em;}
+  /* CAMBIO: nombre en dos líneas solo en mobile */
+  .hero-name{
+    font-size:clamp(20px, 6vw, 64px);
+    letter-spacing:-.05em;
+    gap:.12em;
+    flex-direction: column;
+    align-items: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.05;
+  }
   #hero-name-wrap{bottom:48px;}
   .hero-eyebrow{font-size:9px;letter-spacing:.18em;}
   .hero-sub-text{font-size:clamp(28px,7vw,48px);}
@@ -667,8 +778,8 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   #pixel-canvas{height:580px;}
   .os-folders{grid-template-columns:1fr 1fr;}
   #nn-canvas{height:220px; margin-top:-20px;}
-  .work-layout-scaler{transform:scale(0.65);transform-origin:center center;height:580px;}
-  .rf-pos{transform:rotate(var(--rot)) translateY(-230px);}
+  .work-layout-scaler{transform:scale(0.65);transform-origin:center center;height:600px;}
+  .rf-pos{transform:rotate(var(--rot)) translateY(-290px);}
   .sw-title{font-size:clamp(30px,6vw,48px);}
   html[lang="es"] .sw-title { font-size: clamp(26px, 5vw, 36px); }
   .contact-pre-big{font-size:clamp(32px,6vw,60px);}
@@ -687,9 +798,8 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 }
 
 @media(max-width:700px){
-  .hero-name{font-size:clamp(18px, 5.5vw, 60px);letter-spacing:-.05em;gap:.12em;}
+  .hero-name{font-size:clamp(18px, 8vw, 56px);letter-spacing:-.05em;gap:.08em;}
   #hero-name-wrap{bottom:36px;}
-  /* En mobile el canvas de red neuronal es pequeño y sin margin negativo grande */
   #nn-canvas{height:180px; margin-top:0;}
   .work-layout-scaler{
     height:auto;
@@ -755,7 +865,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 }
 
 @media(max-width:540px){
-  .hero-name{font-size:clamp(16px, 5.5vw, 40px);}
+  .hero-name{font-size:clamp(16px, 9vw, 42px);}
   .hero-sub-text{font-size:clamp(24px,8vw,38px)}
   .cbig{font-size:clamp(38px,11vw,60px)}
   .socials{gap:20px}
@@ -781,7 +891,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-header{flex-direction:column;align-items:flex-start;gap:8px;}
   .mobile-nav a{font-size:34px;}
   #contact{margin-top:60px;}
-  /* En pantallas muy chicas, canvas mínimo */
   #nn-canvas{height:140px; margin-top:0;}
 
   .timeline-container { transform: translateX(-60px); }
@@ -790,7 +899,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 }
 
 @media(max-width:380px){
-  .hero-name{font-size:clamp(12px, 5vw, 32px);}
+  .hero-name{font-size:clamp(12px, 9vw, 36px);}
   .cbig{font-size:clamp(32px,12vw,52px);}
   .contact-pre-big{font-size:clamp(26px,7vw,44px);}
   #about .section-inner{padding-top:240px;padding-bottom:100px;}
@@ -843,6 +952,13 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     <div id="hero-accent-orb"></div>
     <div class="hero-inner">
       <p class="hero-eyebrow" data-es="AI Engineer — Buenos Aires" data-en="AI Engineer — Buenos Aires">AI Engineer — Buenos Aires</p>
+
+      <!-- CAMBIO: indicador de scroll -->
+      <div id="scroll-hint">
+        <span class="scroll-hint-text" id="scrollHintText">Scroll down</span>
+        <div class="scroll-hint-arrow"></div>
+      </div>
+
       <div id="hero-name-wrap">
         <h1 class="hero-name" id="heroName">
           <span class="name-word" id="nw-first">MARÍA</span>
@@ -865,7 +981,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
       <h2 class="about-h reveal" data-es="<span style='color:var(--green)'>¿</span>Quién<br>soy <span style='color:var(--green)'>?</span>" data-en="Who<br>am I <span style='color:var(--green)'>?</span>">Who<br>am I <span style="color:var(--green)">?</span></h2>
       <div class="about-p-box reveal">
         <p class="about-p"
-           data-es="Me especializo en la intersección entre <strong>IA</strong>, visión computacional y desarrollo de bajo nivel. Cada proyecto es un desafío de precisión — desde modelos predictivos y segmentación de imágenes, hasta la optimización en C y Assembly."
+           data-es="Me especializo en la intersección entre <strong>IA</strong>, visión computacional y desarrollo de bajo nivel. Cada proyecto es un desafío de precisión: desde modelos predictivos y segmentación de imágenes, hasta la optimización en C y Assembly."
            data-en="I specialize at the intersection of <strong>AI</strong>, computer vision, and low-level development. Each project is a challenge of precision — from predictive models and image segmentation to C and Assembly optimization.">
           I specialize at the intersection of <strong>AI</strong>, computer vision, and low-level development. Each project is a challenge of precision — from predictive models and image segmentation to C and Assembly optimization.
         </p>
@@ -873,7 +989,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     </div>
 
     <div class="skills-wrapper first-skill reveal">
-      <h3 class="skills-title" data-es="Con qué trabajo" data-en="What I work with">What I work with</h3>
+      <h3 class="skills-title" data-es="Con qué trabajo" data-en="What I Work With">What I Work With</h3>
       <div class="timeline-container" style="height: 700px;">
         <div class="timeline-track">
           <div class="track-knob top"></div>
@@ -893,12 +1009,12 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
         
         <div class="timeline-item right" data-prog="0.37" style="top: 37%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Computer Vision (Extracción de Características, Visión 3D, Detección de Objetos)" data-en="Computer Vision (Feature Extraction, 3D Vision, Object Detection)">Computer Vision (Feature Extraction, 3D Vision, Object Detection)</div>
+          <div class="timeline-content" data-es="Visión Computacional (Extracción de Características, Visión 3D, Detección de Objetos)" data-en="Computer Vision (Feature Extraction, 3D Vision, Object Detection)">Computer Vision (Feature Extraction, 3D Vision, Object Detection)</div>
         </div>
         
         <div class="timeline-item left" data-prog="0.50" style="top: 50%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Procesamiento & Segmentación de Imágenes" data-en="Image Processing & Segmentation">Image Processing & Segmentation</div>
+          <div class="timeline-content" data-es="Procesamiento y Segmentación de Imágenes" data-en="Image Processing & Segmentation">Image Processing & Segmentation</div>
         </div>
         
         <div class="timeline-item right" data-prog="0.62" style="top: 62%;">
@@ -919,7 +1035,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
     </div>
 
     <div class="skills-wrapper reveal">
-      <h3 class="skills-title" data-es="SISTEMAS Y SOFTWARE" data-en="SYSTEMS & SOFTWARE">SYSTEMS & SOFTWARE</h3>
+      <h3 class="skills-title" data-es="Sistemas y Software" data-en="Systems & Software">Systems & Software</h3>
       <div class="timeline-container" style="height: 500px;">
         <div class="timeline-track">
           <div class="track-knob top"></div>
@@ -929,27 +1045,27 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
         
         <div class="timeline-item right" data-prog="0.16" style="top: 16%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Algoritmos & Estructuras de Datos" data-en="Algorithms & Data Structures">Algorithms & Data Structures</div>
+          <div class="timeline-content" data-es="Algoritmos y Estructuras de Datos" data-en="Algorithms & Data Structures">Algorithms & Data Structures</div>
         </div>
         
         <div class="timeline-item left" data-prog="0.33" style="top: 33%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Sistemas Distribuidos & Redes" data-en="Distributed Systems & Networking">Distributed Systems & Networking</div>
+          <div class="timeline-content" data-es="Sistemas Distribuidos y Redes" data-en="Distributed Systems & Networking">Distributed Systems & Networking</div>
         </div>
         
         <div class="timeline-item right" data-prog="0.50" style="top: 50%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Sistemas Operativos & Programación de Bajo Nivel" data-en="Operating Systems & Low-Level Programming">Operating Systems & Low-Level Programming</div>
+          <div class="timeline-content" data-es="Sistemas Operativos y Programación de Bajo Nivel" data-en="Operating Systems & Low-Level Programming">Operating Systems & Low-Level Programming</div>
         </div>
         
         <div class="timeline-item left" data-prog="0.66" style="top: 66%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Sistemas de Bases de Datos (SQL & NoSQL)" data-en="Database Systems (SQL & NoSQL)">Database Systems (SQL & NoSQL)</div>
+          <div class="timeline-content" data-es="Bases de Datos (SQL y NoSQL)" data-en="Database Systems (SQL & NoSQL)">Database Systems (SQL & NoSQL)</div>
         </div>
         
         <div class="timeline-item right" data-prog="0.83" style="top: 83%;">
           <div class="timeline-dash"></div>
-          <div class="timeline-content" data-es="Ingeniería de Software (POO, Funcional, Patrones, Testing)" data-en="Software Engineering (OOP, Functional, Design Patterns, Testing)">Software Engineering (OOP, Functional, Design Patterns, Testing)</div>
+          <div class="timeline-content" data-es="Ingeniería de Software (POO, Funcional, Patrones de Diseño, Testing)" data-en="Software Engineering (OOP, Functional, Design Patterns, Testing)">Software Engineering (OOP, Functional, Design Patterns, Testing)</div>
         </div>
       </div>
     </div>
@@ -979,7 +1095,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="rf-animator"><div class="rf-animator-inner">
             <a href="#" class="retro-folder-wrapper">
               <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
-              <h3 class="rf-name" data-es="Generación Imágenes" data-en="Image Generation">Image Generation</h3>
+              <h3 class="rf-name" data-es="Generación de Imágenes" data-en="Image Generation">Image Generation</h3>
             </a>
           </div></div>
         </div>
@@ -995,7 +1111,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="rf-animator"><div class="rf-animator-inner">
             <a href="#" class="retro-folder-wrapper">
               <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
-              <h3 class="rf-name" data-es="Análisis Sentimiento" data-en="Sentiment Analysis">Sentiment Analysis</h3>
+              <h3 class="rf-name" data-es="Análisis de Sentimiento" data-en="Sentiment Analysis">Sentiment Analysis</h3>
             </a>
           </div></div>
         </div>
@@ -1003,7 +1119,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="rf-animator"><div class="rf-animator-inner">
             <a href="#" class="retro-folder-wrapper">
               <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
-              <h3 class="rf-name" data-es="Computer Vision" data-en="Computer Vision">Computer Vision</h3>
+              <h3 class="rf-name" data-es="Visión Computacional" data-en="Computer Vision">Computer Vision</h3>
             </a>
           </div></div>
         </div>
@@ -1011,7 +1127,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="rf-animator"><div class="rf-animator-inner">
             <a href="#" class="retro-folder-wrapper">
               <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
-              <h3 class="rf-name" data-es="Predictive Modeling" data-en="Predictive Modeling">Predictive Modeling</h3>
+              <h3 class="rf-name" data-es="Modelado Predictivo" data-en="Predictive Modeling">Predictive Modeling</h3>
             </a>
           </div></div>
         </div>
@@ -1027,7 +1143,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
         <span class="s-num">03</span>
         <h2 class="os-title" data-es="Proyectos" data-en="Projects">Projects</h2>
       </div>
-      <span class="os-hint" data-es="↓ Clickeá y probá el RAG" data-en="↓ Click and try the RAG">↓ Click and try the RAG</span>
+      <span class="os-hint" data-es="↓ Hacé clic y probá el RAG" data-en="↓ Click and try the RAG">↓ Click and try the RAG</span>
     </div>
     <div class="os-desktop reveal">
       <div class="os-titlebar">
@@ -1090,7 +1206,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div>
         </div>
         <div class="ochat-msgs" id="om2">
-          <div class="omsg omsg-ai" data-es="RAG Research listo. Explorámos papers juntos." data-en="RAG Research ready. Let's explore papers together.">RAG Research ready. Let's explore papers together.</div>
+          <div class="omsg omsg-ai" data-es="RAG Research listo. Exploremos papers juntos." data-en="RAG Research ready. Let's explore papers together.">RAG Research ready. Let's explore papers together.</div>
         </div>
         <div class="ochat-input">
           <input class="oinput" id="oi2" type="text" autocomplete="off" data-placeholder-es="Explorá papers científicos..." data-placeholder-en="Explore scientific papers..." placeholder="Explore scientific papers...">
@@ -1105,7 +1221,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   <div class="contact-circle"></div>
   <div class="contact-pre">
     <span class="contact-pre-eyebrow" data-es="¿Trabajamos juntos?" data-en="Want to work together?">Want to work together?</span>
-    <p class="contact-pre-big" data-es="Estoy disponible<br>para proyectos" data-en="Available for<br>new projects">Available for<br>new projects</p>
+    <p class="contact-pre-big" data-es="Disponible para<br>nuevos proyectos" data-en="Available for<br>new projects">Available for<br>new projects</p>
   </div>
   <div class="contact-content" style="padding-bottom:140px;">
     <p class="cbig"><span id="cc1" data-es="Hagamos" data-en="Let's make">Let's make</span></p>
@@ -1189,6 +1305,12 @@ function buildWords(words){
   });
 }
 
+/* CAMBIO: actualiza el texto del scroll hint según idioma */
+function updateScrollHint(l) {
+  const el = document.getElementById('scrollHintText');
+  if (el) el.textContent = l === 'es' ? 'Deslizá hacia abajo' : 'Scroll down';
+}
+
 function applyLang(l){
   lang = l;
   document.documentElement.lang = l;
@@ -1206,6 +1328,7 @@ function applyLang(l){
     el.placeholder = l==='es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
   });
   buildWords(l==='es' ? WORDS_ES : WORDS_EN);
+  updateScrollHint(l);
   if(phase === 3){ document.querySelectorAll('#heroSubText .word').forEach(w => w.classList.add('in')); }
   [0,1,2].forEach(i => {
     const msg = document.querySelector('#om'+i+' .omsg-ai');
@@ -1285,36 +1408,24 @@ function updateCanvasRain() {
   });
 }
 
-/* ═══ RED NEURONAL — mobile vs desktop ═══ */
+/* ═══ RED NEURONAL ═══ */
 const nnCanvas = document.getElementById('nn-canvas');
 const nnCtx = nnCanvas.getContext('2d');
 let particles = [];
 
-// Detectar si es dispositivo táctil/mobile
 const isMobile = () => window.innerWidth <= 960 || ('ontouchstart' in window);
 
 function getNNConfig() {
   if (isMobile()) {
-    return {
-      numParticles: 60,
-      connectionDistance: 80,
-      mouseGlowRadius: 0,   // sin glow en mobile
-      speed: 0.3
-    };
+    return { numParticles: 60, connectionDistance: 80, mouseGlowRadius: 0, speed: 0.3 };
   }
-  return {
-    numParticles: 350,
-    connectionDistance: 110,
-    mouseGlowRadius: 200,
-    speed: 0.4
-  };
+  return { numParticles: 350, connectionDistance: 110, mouseGlowRadius: 200, speed: 0.4 };
 }
 
 function initNN() {
   if(!nnCanvas) return;
   nnCanvas.width = window.innerWidth;
   nnCanvas.height = nnCanvas.offsetHeight || 600;
-  
   const cfg = getNNConfig();
   particles = [];
   for (let i = 0; i < cfg.numParticles; i++) {
@@ -1328,51 +1439,35 @@ function initNN() {
   }
 }
 
-let nnAnimFrame = null;
 function animateNN() {
-  nnAnimFrame = requestAnimationFrame(animateNN);
+  requestAnimationFrame(animateNN);
   if(!nnCanvas) return;
-  
   const rect = nnCanvas.getBoundingClientRect();
   if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
-  
   const cfg = getNNConfig();
   nnCtx.clearRect(0, 0, nnCanvas.width, nnCanvas.height);
-
-  // En mobile, el mouse está fuera de pantalla así que nunca activa el glow
-  // Solo calculamos posición relativa si NO es mobile
   const mouseCanvasX = isMobile() ? -9999 : mx - rect.left;
   const mouseCanvasY = isMobile() ? -9999 : my - rect.top;
-
   for (let i = 0; i < particles.length; i++) {
     let p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
+    p.x += p.vx; p.y += p.vy;
     if (p.x < 0 || p.x > nnCanvas.width) p.vx *= -1;
     if (p.y < 0 || p.y > nnCanvas.height) p.vy *= -1;
-
     for (let j = i + 1; j < particles.length; j++) {
       let p2 = particles[j];
-      let dx = p.x - p2.x;
-      let dy = p.y - p2.y;
+      let dx = p.x - p2.x, dy = p.y - p2.y;
       let dist = Math.sqrt(dx*dx + dy*dy);
-
       if (dist < cfg.connectionDistance) {
         let opacity = 1 - (dist / cfg.connectionDistance);
-
-        // Solo calcular mouse glow en desktop
         let isNearMouse = false;
         if (!isMobile() && cfg.mouseGlowRadius > 0) {
-          let midX = (p.x + p2.x) / 2;
-          let midY = (p.y + p2.y) / 2;
+          let midX = (p.x + p2.x) / 2, midY = (p.y + p2.y) / 2;
           let mouseDist = Math.sqrt(Math.pow(midX - mouseCanvasX, 2) + Math.pow(midY - mouseCanvasY, 2));
           isNearMouse = mouseDist < cfg.mouseGlowRadius;
         }
-
         nnCtx.beginPath();
         nnCtx.moveTo(p.x, p.y);
         nnCtx.lineTo(p2.x, p2.y);
-
         if (isNearMouse) {
           nnCtx.strokeStyle = `rgba(244, 70, 183, ${opacity * 1.5})`;
           nnCtx.lineWidth = 1.2;
@@ -1383,7 +1478,6 @@ function animateNN() {
         nnCtx.stroke();
       }
     }
-
     nnCtx.beginPath();
     nnCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
     nnCtx.fillStyle = 'rgba(240, 237, 232, 0.6)';
@@ -1391,32 +1485,43 @@ function animateNN() {
   }
 }
 
-window.addEventListener('resize', () => {
-  initNN();
-});
+window.addEventListener('resize', () => { initNN(); });
+window.addEventListener('load', () => { initNN(); animateNN(); });
 
-window.addEventListener('load', () => {
-  initNN();
-  animateNN();
-});
+/* ═══ SKILLS TIMELINE — animación suave con rAF ═══ */
+/* CAMBIO: usamos requestAnimationFrame para interpolar suavemente el fill,
+   igual que funciona la sección "Software" (que no tiene jank porque
+   su timeline-container es más corto y el viewport-trigger encaja mejor).
+   Ahora ambas secciones usan el mismo mecanismo. */
 
-/* ═══ SKILLS TIMELINE SCROLL-DRIVEN ═══ */
+let timelineFillTargets = new Map();
+
 function updateTimeline() {
   document.querySelectorAll('.timeline-container').forEach(container => {
     const fill = container.querySelector('.timeline-fill');
     const knobTop = container.querySelector('.track-knob.top');
     const knobBottom = container.querySelector('.track-knob.bottom');
     if(!fill || !knobTop || !knobBottom) return;
+
     const rect = container.getBoundingClientRect();
     const wh = window.innerHeight;
     const triggerPoint = wh * 0.6;
     let prog = (triggerPoint - rect.top) / rect.height;
     prog = Math.max(0, Math.min(1, prog));
-    fill.style.height = (prog * 100) + '%';
-    if(prog > 0.02) knobTop.classList.add('filled');
+
+    // CAMBIO: interpolación suave en lugar de asignación directa
+    const key = container;
+    const current = timelineFillTargets.get(key) || 0;
+    const smoothed = current + (prog - current) * 0.12;
+    timelineFillTargets.set(key, smoothed);
+
+    fill.style.height = (smoothed * 100) + '%';
+
+    if(smoothed > 0.02) knobTop.classList.add('filled');
     else knobTop.classList.remove('filled');
-    if(prog >= 0.99) knobBottom.classList.add('filled');
+    if(smoothed >= 0.99) knobBottom.classList.add('filled');
     else knobBottom.classList.remove('filled');
+
     container.querySelectorAll('.timeline-item').forEach(item => {
       const itemProg = parseFloat(item.dataset.prog);
       if(prog >= itemProg) item.classList.add('active');
@@ -1448,9 +1553,15 @@ function onScroll(){
   }
 
   updateCanvasRain();
-  updateTimeline();
 }
 window.addEventListener('scroll', onScroll, {passive:true});
+
+/* CAMBIO: loop de rAF dedicado para el timeline (suave, independiente del scroll event) */
+function timelineLoop() {
+  updateTimeline();
+  requestAnimationFrame(timelineLoop);
+}
+requestAnimationFrame(timelineLoop);
 
 /* ═══ REVEAL ═══ */
 const revealObs = new IntersectionObserver(entries => {
@@ -1511,7 +1622,7 @@ document.querySelectorAll('.folder').forEach(f => {
 const osR = {
   es:{
     0:['RAG Docs puede buscar y sintetizar información de cualquier PDF o texto cargado.','Consultame sobre contenido, estructura o datos específicos del documento.','Extraigo tablas, resúmenes y respuestas precisas de documentos complejos.'],
-    1:['RAG Legal analiza cláusulas, términos y condiciones en contratos.','Identifico riesgos, obligaciones y derechos en cualquier contrato.','Consultame sobre aspectos legales del documento cargado.'],
+    1:['RAG Legal analiza cláusulas, términos y condiciones en contratos.','Identifico riesgos, obligaciones y derechos en cualquier contrato.','Consultame sobre los aspectos legales del documento cargado.'],
     2:['RAG Research indexa papers y encuentra conexiones científicas.','Resumo metodologías, resultados y conclusiones de papers.','Preguntame sobre el estado del arte en cualquier área de investigación.']
   },
   en:{
