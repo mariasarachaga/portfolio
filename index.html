@@ -242,7 +242,10 @@ section{position:relative;overflow:visible;}
 .s-num{display:block;font-family:var(--fm);font-size:10px;letter-spacing:.16em;color:var(--blue);opacity:.7;margin-bottom:18px;}
 
 /* ═══ ABOUT ═══ */
-#about{background:transparent;position:relative;}
+#about{
+  background: transparent;
+  position: relative;
+}
 
 #pixel-canvas {
   position: absolute;
@@ -279,87 +282,180 @@ section{position:relative;overflow:visible;}
 .about-p{font-family:var(--fs);font-size:20px;line-height:1.88;color:rgba(240,237,232,.75);font-weight:300;font-style:italic;margin-top:0;}
 .about-p strong{color:var(--text);font-style:normal;font-weight:400}
 
-.about-header-new{display:flex;flex-direction:column;gap:30px;}
-.about-p-box{display:flex;align-items:flex-start;gap:20px;max-width:700px;}
-@media(min-width:960px){
-  .about-header-new{flex-direction:row;align-items:flex-start;gap:60px;}
-  .about-p-box{margin-top:15px;}
+.about-header-new {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.about-p-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 700px;
+}
+@media(min-width: 960px) {
+  .about-header-new {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  .about-p-box { margin-top: 15px; }
 }
 
-.skills-wrapper{margin-top:300px;display:flex;flex-direction:column;align-items:center;position:relative;}
-.skills-wrapper.first-skill{margin-top:380px;}
-
-.skills-title{
-  font-family:var(--fd);font-size:clamp(36px,5vw,54px);
-  color:var(--green);margin-bottom:70px;font-weight:700;
-  letter-spacing:-0.02em;text-align:center;
+.skills-wrapper {
+  margin-top: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.skills-wrapper.first-skill {
+  margin-top: 380px;
 }
 
-.timeline-container{position:relative;width:8px;}
-.timeline-track{position:absolute;inset:0;border:2px solid rgba(255,255,255,0.15);border-radius:10px;background:transparent;}
-.timeline-fill{
-  position:absolute;top:0;left:0;right:0;
-  background:var(--green);border-radius:10px;height:0%;
-  transition:height 0.1s ease-out;
-  box-shadow:0 0 15px rgba(144,238,144,0.5);z-index:1;
+.skills-title {
+  font-family: var(--fd);
+  font-size: clamp(36px, 5vw, 54px);
+  color: var(--green);
+  margin-bottom: 70px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
 }
-.track-knob{
-  position:absolute;left:50%;transform:translateX(-50%);
-  width:16px;height:16px;border:2px solid rgba(255,255,255,0.2);
-  border-radius:50%;background:var(--black);z-index:2;
-  transition:background 0.3s,border-color 0.3s,box-shadow 0.3s;
-}
-.track-knob.top{top:-16px;}
-.track-knob.bottom{bottom:-16px;}
-.track-knob.filled{background:var(--green);border-color:var(--green);box-shadow:0 0 10px rgba(144,238,144,0.6);}
 
-.timeline-item{
-  position:absolute;display:flex;align-items:center;width:250px;
-  font-family:var(--fm);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--muted);opacity:0.3;
-  transition:opacity 0.4s ease,color 0.4s ease,transform 0.4s ease;
+.timeline-container {
+  position: relative;
+  width: 8px;
 }
-.timeline-item.active{opacity:1;color:var(--green);text-shadow:0 0 8px rgba(144,238,144,0.3);}
-.timeline-item.right{left:100%;margin-left:15px;transform:translateY(-50%);}
-.timeline-item.left{right:100%;margin-right:15px;transform:translateY(-50%);justify-content:flex-end;}
-.timeline-dash{width:15px;height:2px;background:rgba(255,255,255,0.2);transition:background 0.4s ease,width 0.4s ease,box-shadow 0.4s ease;}
-.timeline-item.active .timeline-dash{background:var(--green);width:25px;box-shadow:0 0 8px rgba(144,238,144,0.6);}
-.timeline-item.right .timeline-dash{margin-right:15px;}
-.timeline-item.left .timeline-dash{margin-left:15px;order:2;}
-.timeline-item.left .timeline-content{order:1;text-align:right;}
+.timeline-track {
+  position: absolute; inset: 0;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  background: transparent;
+}
+.timeline-fill {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: var(--green);
+  border-radius: 10px;
+  height: 0%;
+  transition: height 0.1s ease-out;
+  box-shadow: 0 0 15px rgba(144,238,144,0.5);
+  z-index: 1;
+}
 
-/* ═══ NN CANVAS ═══ */
-#nn-canvas{
-  position:relative;width:100%;height:600px;
-  z-index:2;margin-top:-100px;
-  pointer-events:none;display:block;
+.track-knob {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  background: var(--black);
+  z-index: 2;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.track-knob.top { top: -16px; }
+.track-knob.bottom { bottom: -16px; }
+
+.track-knob.filled {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 10px rgba(144,238,144,0.6);
+}
+
+.timeline-item {
+  position: absolute;
+  display: flex; align-items: center;
+  width: 250px;
+  font-family: var(--fm);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.3;
+  transition: opacity 0.4s ease, color 0.4s ease, transform 0.4s ease;
+}
+.timeline-item.active {
+  opacity: 1;
+  color: var(--green);
+  text-shadow: 0 0 8px rgba(144,238,144,0.3);
+}
+.timeline-item.right {
+  left: 100%; margin-left: 15px;
+  transform: translateY(-50%);
+}
+.timeline-item.left {
+  right: 100%; margin-right: 15px;
+  transform: translateY(-50%);
+  justify-content: flex-end;
+}
+.timeline-dash {
+  width: 15px; height: 2px;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.4s ease, width 0.4s ease, box-shadow 0.4s ease;
+}
+.timeline-item.active .timeline-dash {
+  background: var(--green);
+  width: 25px;
+  box-shadow: 0 0 8px rgba(144,238,144,0.6);
+}
+.timeline-item.right .timeline-dash { margin-right: 15px; }
+.timeline-item.left .timeline-dash { margin-left: 15px; order: 2; }
+.timeline-item.left .timeline-content { order: 1; text-align: right; }
+
+/* ═══ NN CANVAS — desktop perfecto, mobile arreglado ═══ */
+#nn-canvas {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  z-index: 2;
+  margin-top: -100px;
+  pointer-events: none;
+  display: block;
 }
 
 /* ═══ WORK ═══ */
 #work{position:relative;background:transparent;}
-#work, #work *{
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFAda' stroke='%23111' stroke-width='1.5' d='M6 6 v12 l3 -3 l2 5 l2 -1 l-2 -5 l4 0 z' shape-rendering='crispEdges'/%3E%3Cpath fill='%23111' d='M5 2 h2 v3 h-2 z M2 5 h3 v2 h-3 z M9 5 h3 v2 h-3 z' shape-rendering='crispEdges'/%3E%3C/svg%3E") 16 16, auto !important;
+
+#work, #work * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFAda' stroke='%23111' stroke-width='1.5' d='M6 6 v12 l3 -3 l2 5 l2 -1 l-2 -5 l4 0 z' shape-rendering='crispEdges'/%3E%3Cpath fill='%23111' d='M5 2 h2 v3 h-2 z M2 5 h3 v2 h-3 z M9 5 h3 v2 h-3 z' shape-rendering='crispEdges'/%3E%3C/svg%3E") 16 16, auto !important;
 }
-#work-bg{
-  position:absolute;inset:-300px 0;background:var(--blue);
+
+#work-bg {
+  position:absolute;inset:-300px 0;
+  background:var(--blue);
   z-index:0;pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,1) 25%,rgba(0,0,0,1) 75%,transparent 100%);
   mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,1) 25%,rgba(0,0,0,1) 75%,transparent 100%);
 }
+
 #work .section-inner{padding:150px 0 200px;position:relative;z-index:5;}
+
 .work-layout-scaler{position:relative;width:100%;height:850px;overflow:hidden;}
 
 @keyframes orbit{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 @keyframes counter-orbit{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}
 
-.work-orbit-ring{position:absolute;top:50%;left:50%;width:0;height:0;z-index:10;animation:orbit 45s linear infinite;}
-.sw-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:20;pointer-events:none;}
+.work-orbit-ring{
+  position:absolute;top:50%;left:50%;
+  width:0;height:0;z-index:10;
+  animation:orbit 45s linear infinite;
+}
+
+.sw-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;z-index:20;pointer-events:none;
+}
 .sw-title{
-  font-family:var(--fd);font-size:clamp(36px,5vw,58px);
-  font-weight:800;line-height:0.95;color:#fff;letter-spacing:-0.04em;
+  font-family:var(--fd);
+  font-size:clamp(36px, 5vw, 58px);
+  font-weight:800;line-height:0.95;color:#fff;
+  letter-spacing:-0.04em;
   animation:pulse-glow 3s ease-in-out infinite alternate;
 }
-html[lang="es"] .sw-title{font-size:clamp(28px,4vw,44px);}
+
+html[lang="es"] .sw-title {
+  font-size: clamp(28px, 4vw, 44px);
+}
 
 @keyframes pulse-glow{
   0%{transform:scale(1);text-shadow:0 0 10px rgba(255,255,255,0.1);}
@@ -368,21 +464,60 @@ html[lang="es"] .sw-title{font-size:clamp(28px,4vw,44px);}
 
 .rf-pos{position:absolute;transform:rotate(var(--rot)) translateY(-310px);}
 .rf-animator{position:absolute;top:0;left:0;animation:counter-orbit 45s linear infinite;}
-.rf-animator-inner{position:absolute;transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot)));width:100px;height:72px;}
-.retro-folder-wrapper{display:flex;flex-direction:column;align-items:center;text-decoration:none;width:120px;position:absolute;top:0;left:50%;transform:translateX(-50%);}
+.rf-animator-inner{
+  position:absolute;
+  transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot)));
+  width:100px;height:72px;
+}
+
+.retro-folder-wrapper{
+  display:flex;flex-direction:column;align-items:center;
+  text-decoration:none;width:120px;
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+}
 .pixel-folder{position:relative;width:100px;height:72px;margin-bottom:12px;}
-.pf-back{position:absolute;bottom:0;left:0;right:0;height:100%;background:#f1e477;border:3px solid #000;box-shadow:4px 4px 0px #000;}
-.pf-back::before{content:'';position:absolute;top:-12px;left:-3px;width:45%;height:12px;background:#f1e477;border:3px solid #000;border-bottom:none;box-shadow:inset 3px 3px 0px rgba(255,255,255,0.5);}
-.pf-paper{position:absolute;bottom:8px;left:8px;right:8px;height:70%;background:#fff;border:2.5px solid #000;transition:transform 0.2s steps(4);}
-.pf-paper::after{content:'';position:absolute;top:6px;left:6px;right:6px;height:3px;background:#111;box-shadow:0 6px 0 #111,0 12px 0 #111;}
-.pf-front{position:absolute;bottom:0;left:-3px;right:-3px;height:75%;background:repeating-conic-gradient(#fdf583 0% 25%,#fff9c4 0% 50%) 50% / 8px 8px;border:3px solid #000;transform-origin:bottom;transition:transform 0.25s steps(4);}
+.pf-back{
+  position:absolute;bottom:0;left:0;right:0;height:100%;
+  background:#f1e477;border:3px solid #000;box-shadow:4px 4px 0px #000;
+}
+.pf-back::before{
+  content:'';position:absolute;
+  top:-12px;left:-3px;width:45%;height:12px;
+  background:#f1e477;border:3px solid #000;border-bottom:none;
+  box-shadow:inset 3px 3px 0px rgba(255,255,255,0.5);
+}
+.pf-paper{
+  position:absolute;bottom:8px;left:8px;right:8px;height:70%;
+  background:#fff;border:2.5px solid #000;
+  transition:transform 0.2s steps(4);
+}
+.pf-paper::after{
+  content:'';position:absolute;top:6px;left:6px;right:6px;height:3px;
+  background:#111;box-shadow:0 6px 0 #111,0 12px 0 #111;
+}
+.pf-front{
+  position:absolute;bottom:0;left:-3px;right:-3px;height:75%;
+  background:repeating-conic-gradient(#fdf583 0% 25%,#fff9c4 0% 50%) 50% / 8px 8px;
+  border:3px solid #000;transform-origin:bottom;
+  transition:transform 0.25s steps(4);
+}
 .retro-folder-wrapper:hover .pf-front{transform:scaleY(0.7) skewX(-10deg);}
 .retro-folder-wrapper:hover .pf-paper{transform:translateY(-20px);}
-.rf-name{font-family:var(--fm);font-size:9px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:#fff;text-align:center;line-height:1.3;text-shadow:2px 2px 0px #000;}
+.rf-name{
+  font-family:var(--fm);font-size:9px;font-weight:800;
+  letter-spacing:.02em;text-transform:uppercase;color:#fff;
+  text-align:center;line-height:1.3;text-shadow:2px 2px 0px #000;
+}
 
 /* ═══ PROJECTS ═══ */
 #projects{background:transparent}
-#projects::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:50px 50px;-webkit-mask-image:radial-gradient(circle at center,rgba(0,0,0,1) 0%,transparent 80%);mask-image:radial-gradient(circle at center,rgba(0,0,0,1) 0%,transparent 80%);}
+#projects::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:50px 50px;
+  -webkit-mask-image:radial-gradient(circle at center,rgba(0,0,0,1) 0%,transparent 80%);
+  mask-image:radial-gradient(circle at center,rgba(0,0,0,1) 0%,transparent 80%);
+}
 #projects::after{display:none;}
 
 .os-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;}
@@ -395,7 +530,12 @@ html[lang="es"] .sw-title{font-size:clamp(28px,4vw,44px);}
 .os-tbar-label{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.45;margin-left:auto;}
 .os-folders{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,237,232,.08);border-bottom:1px solid rgba(240,237,232,.08);}
 .folder{background:#0a0a0a;padding:32px 28px;cursor:none;transition:background .3s;position:relative;overflow:hidden;}
-.folder::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--coral),var(--pink));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1);}
+.folder::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--coral),var(--pink));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
 .folder:hover{background:#0f0f14}
 .folder:hover::before,.folder.active::before{transform:scaleX(1)}
 .folder.active{background:#0f0f14}
@@ -403,7 +543,12 @@ html[lang="es"] .sw-title{font-size:clamp(28px,4vw,44px);}
 .folder:hover .folder-icon{transform:translateY(-3px) scale(1.06)}
 .folder-name{font-family:var(--fd);font-size:15px;font-weight:600;margin-bottom:7px;color:var(--text)}
 .folder-desc{font-family:var(--fm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.folder-badge{position:absolute;top:14px;right:14px;background:rgba(241,103,92,.08);color:var(--coral);font-family:var(--fm);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border:1px solid rgba(241,103,92,.18);border-radius:4px;}
+.folder-badge{
+  position:absolute;top:14px;right:14px;
+  background:rgba(241,103,92,.08);color:var(--coral);
+  font-family:var(--fm);font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;border:1px solid rgba(241,103,92,.18);border-radius:4px;
+}
 .os-chat{display:none;flex-direction:column;min-height:300px}
 .os-chat.active{display:flex}
 .os-chat-topbar{padding:12px 20px;border-bottom:1px solid rgba(240,237,232,.08);display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.012);}
@@ -437,16 +582,38 @@ html[lang="es"] .sw-title{font-size:clamp(28px,4vw,44px);}
 .contact-pre{padding:90px 56px 64px;position:relative;z-index:2;text-align:center;}
 .contact-pre-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;}
 .contact-pre-big{font-family:var(--fd);font-size:clamp(42px,7vw,96px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--text);}
-.contact-circle{position:absolute;bottom:-100%;left:50%;width:220vmax;height:220vmax;background:var(--blue);border-radius:50%;transform:translateX(-50%);transition:bottom 1.5s cubic-bezier(.16,1,.3,1);pointer-events:none;z-index:1;}
+.contact-circle{
+  position:absolute;bottom:-100%;left:50%;
+  width:220vmax;height:220vmax;background:var(--blue);border-radius:50%;
+  transform:translateX(-50%);transition:bottom 1.5s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;z-index:1;
+}
 #contact.revealed .contact-circle{bottom:-55vmax}
 .contact-content{position:relative;z-index:2;padding:90px 56px 80px;text-align:center;opacity:0;transition:opacity .7s ease .7s;}
 #contact.revealed .contact-content{opacity:1}
-.cbig{font-family:var(--fd);font-size:clamp(56px,9.5vw,132px);font-weight:800;letter-spacing:-.05em;line-height:.85;color:var(--coral);display:block;overflow:hidden;padding-bottom:.25em;margin-bottom:-.25em;}
+.cbig{
+  font-family:var(--fd);font-size:clamp(56px,9.5vw,132px);
+  font-weight:800;letter-spacing:-.05em;line-height:.85;
+  color:var(--coral);display:block;overflow:hidden;
+  padding-bottom:.25em;margin-bottom:-.25em;
+}
 .cbig span{display:inline-block;transform:translateY(110%)}
-.contact-email{display:inline-block;margin-top:56px;font-family:var(--fd);font-size:16px;font-weight:700;letter-spacing:-.02em;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:4px;transition:color .3s,border-color .3s;}
+.contact-email{
+  display:inline-block;margin-top:56px;
+  font-family:var(--fd);font-size:16px;font-weight:700;
+  letter-spacing:-.02em;
+  color:#fff;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:4px;
+  transition:color .3s,border-color .3s;
+}
 .contact-email:hover{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.6)}
 .socials{display:flex;justify-content:center;gap:36px;margin-top:48px;flex-wrap:wrap;padding-bottom:20px;}
-.socials a{font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:-.03em;color:rgba(255,255,255,.55);text-decoration:none;transition:color .28s;position:relative;}
+.socials a{
+  font-family:var(--fd);font-size:22px;font-weight:700;
+  letter-spacing:-.03em;
+  color:rgba(255,255,255,.55);text-decoration:none;
+  transition:color .28s;position:relative;
+}
 .socials a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:rgba(255,255,255,.4);transition:width .28s ease;}
 .socials a:hover{color:#fff}
 .socials a:hover::after{width:100%}
@@ -458,16 +625,18 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* ═══ RESPONSIVE ═══ */
+/* ═══ RESPONSIVE BREAKPOINTS ═══ */
 @media(max-width:1200px){
-  .hero-name{font-size:clamp(22px,6vw,90px);}
+  .hero-name{font-size:clamp(22px, 6vw, 90px);}
   .work-layout-scaler{transform:scale(0.9);transform-origin:center center;height:780px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-270px);}
 }
+
 @media(max-width:1100px){
   .work-layout-scaler{transform:scale(0.82);transform-origin:center center;height:700px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-260px);}
 }
+
 @media(max-width:960px){
   nav,nav.scrolled{padding:20px 28px}
   .nav-links{display:none}
@@ -481,59 +650,112 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-folders{grid-template-columns:1fr 1fr}
   .contact-pre,.contact-content{padding:60px 28px 40px}
   footer{padding:20px 28px}
-  /* MOBILE: canvas más chico y sin margin negativo grande */
-  #nn-canvas{height:300px;margin-top:-20px;}
+  /* Mobile: canvas más pequeño y sin espacio extra */
+  #nn-canvas{height:280px; margin-top:-40px;}
   .work-layout-scaler{transform:scale(0.75);transform-origin:center center;height:650px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-250px);}
   .about-h{font-size:clamp(36px,5.5vw,60px);}
   .about-p{font-size:18px;}
-  /* NOMBRE más grande en mobile — ocupa más pantalla */
-  .hero-name{font-size:clamp(36px,9.5vw,80px);}
-  #hero-name-wrap{bottom:50%;transform:translateY(50%);padding:0 20px;}
 }
+
 @media(max-width:768px){
-  /* Nombre sigue grande */
-  .hero-name{font-size:clamp(34px,10vw,72px);letter-spacing:-.05em;gap:.1em;}
-  #hero-name-wrap{bottom:50%;transform:translateY(50%);}
+  .hero-name{font-size:clamp(20px, 6vw, 64px);letter-spacing:-.05em;gap:.12em;}
+  #hero-name-wrap{bottom:48px;}
   .hero-eyebrow{font-size:9px;letter-spacing:.18em;}
   .hero-sub-text{font-size:clamp(28px,7vw,48px);}
   #about .section-inner{padding-top:480px;padding-bottom:240px;}
   #pixel-canvas{height:580px;}
   .os-folders{grid-template-columns:1fr 1fr;}
-  #nn-canvas{height:260px;margin-top:0;}
+  #nn-canvas{height:220px; margin-top:-20px;}
   .work-layout-scaler{transform:scale(0.65);transform-origin:center center;height:580px;}
   .rf-pos{transform:rotate(var(--rot)) translateY(-230px);}
   .sw-title{font-size:clamp(30px,6vw,48px);}
-  html[lang="es"] .sw-title{font-size:clamp(26px,5vw,36px);}
+  html[lang="es"] .sw-title { font-size: clamp(26px, 5vw, 36px); }
   .contact-pre-big{font-size:clamp(32px,6vw,60px);}
   .cbig{font-size:clamp(44px,10vw,80px);}
   #contact{margin-top:100px;}
   footer{padding:16px 20px;}
-  .timeline-container{transform:translateX(-40px);}
-  .timeline-item.left{right:auto;left:100%;margin-right:0;margin-left:15px;justify-content:flex-start;}
-  .timeline-item.left .timeline-dash{margin-left:0;margin-right:15px;order:unset;}
-  .timeline-item.left .timeline-content{order:unset;text-align:left;}
-}
-@media(max-width:700px){
-  .hero-name{font-size:clamp(32px,10.5vw,64px);letter-spacing:-.05em;gap:.08em;}
-  #hero-name-wrap{bottom:50%;transform:translateY(50%);padding:0 16px;}
-  #nn-canvas{height:220px;margin-top:0;}
-  .work-layout-scaler{
-    height:auto;min-height:600px;padding:40px 20px 60px;
-    transform:none;display:flex;flex-direction:column;align-items:center;gap:0;overflow:visible;
+  
+  .timeline-container { transform: translateX(-40px); }
+  .timeline-item.left {
+    right: auto; left: 100%;
+    margin-right: 0; margin-left: 15px;
+    justify-content: flex-start;
   }
-  .work-orbit-ring{position:relative;width:100%;height:auto;animation:none;transform:none;top:0;left:0;display:flex;flex-direction:column;align-items:center;gap:32px;}
-  .sw-center{position:relative;animation:none;transform:none;top:0;left:0;margin-bottom:32px;text-align:center;}
-  .rf-pos{position:relative;transform:none !important;margin-bottom:0;width:100%;display:flex;justify-content:center;}
-  .rf-animator{animation:none;position:relative;transform:none !important;width:120px;height:auto;}
-  .rf-animator-inner{transform:none !important;position:relative;width:120px;height:auto;top:0;left:0;}
-  .retro-folder-wrapper{position:relative;left:0;transform:none;width:120px;}
+  .timeline-item.left .timeline-dash { margin-left: 0; margin-right: 15px; order: unset; }
+  .timeline-item.left .timeline-content { order: unset; text-align: left; }
+}
+
+@media(max-width:700px){
+  .hero-name{font-size:clamp(18px, 5.5vw, 60px);letter-spacing:-.05em;gap:.12em;}
+  #hero-name-wrap{bottom:36px;}
+  /* En mobile el canvas de red neuronal es pequeño y sin margin negativo grande */
+  #nn-canvas{height:180px; margin-top:0;}
+  .work-layout-scaler{
+    height:auto;
+    min-height:600px;
+    padding:40px 20px 60px;
+    transform:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    overflow:visible;
+  }
+  .work-orbit-ring{
+    position:relative;
+    width:100%;
+    height:auto;
+    animation:none;
+    transform:none;
+    top:0;left:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:32px;
+  }
+  .sw-center{
+    position:relative;
+    animation:none;
+    transform:none;
+    top:0;left:0;
+    margin-bottom:32px;
+    text-align:center;
+  }
+  .rf-pos{
+    position:relative;
+    transform:none !important;
+    margin-bottom:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+  }
+  .rf-animator{
+    animation:none;
+    position:relative;
+    transform:none !important;
+    width:120px;
+    height:auto;
+  }
+  .rf-animator-inner{
+    transform:none !important;
+    position:relative;
+    width:120px;
+    height:auto;
+    top:0;left:0;
+  }
+  .retro-folder-wrapper{
+    position:relative;
+    left:0;
+    transform:none;
+    width:120px;
+  }
   #about .section-inner{padding-top:360px;padding-bottom:160px;}
   #pixel-canvas{height:460px;top:-80px;}
 }
+
 @media(max-width:540px){
-  .hero-name{font-size:clamp(30px,11vw,56px);}
-  #hero-name-wrap{bottom:50%;transform:translateY(50%);padding:0 12px;}
+  .hero-name{font-size:clamp(16px, 5.5vw, 40px);}
   .hero-sub-text{font-size:clamp(24px,8vw,38px)}
   .cbig{font-size:clamp(38px,11vw,60px)}
   .socials{gap:20px}
@@ -548,6 +770,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .contact-pre{padding:50px 20px 30px;}
   .contact-content{padding:60px 20px 60px;}
   .hero-eyebrow{font-size:8px;left:20px;top:80px;}
+  #hero-name-wrap{padding:0 12px;}
   nav,nav.scrolled{padding:16px 20px;}
   footer{padding:14px 20px;flex-direction:column;align-items:flex-start;gap:6px;}
   .section-inner{padding:70px 20px;}
@@ -558,18 +781,21 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .os-header{flex-direction:column;align-items:flex-start;gap:8px;}
   .mobile-nav a{font-size:34px;}
   #contact{margin-top:60px;}
-  #nn-canvas{height:180px;margin-top:0;}
-  .timeline-container{transform:translateX(-60px);}
-  .timeline-item{width:160px;font-size:11px;}
-  .skills-title{margin-bottom:40px;}
+  /* En pantallas muy chicas, canvas mínimo */
+  #nn-canvas{height:140px; margin-top:0;}
+
+  .timeline-container { transform: translateX(-60px); }
+  .timeline-item { width: 160px; font-size: 11px; }
+  .skills-title { margin-bottom: 40px; }
 }
+
 @media(max-width:380px){
-  .hero-name{font-size:clamp(26px,11vw,44px);}
+  .hero-name{font-size:clamp(12px, 5vw, 32px);}
   .cbig{font-size:clamp(32px,12vw,52px);}
   .contact-pre-big{font-size:clamp(26px,7vw,44px);}
   #about .section-inner{padding-top:240px;padding-bottom:100px;}
   #pixel-canvas{height:320px;top:-50px;}
-  #nn-canvas{height:140px;margin-top:0;}
+  #nn-canvas{height:100px; margin-top:0;}
 }
 </style>
 </head>
@@ -654,13 +880,41 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="track-knob bottom"></div>
         </div>
         <div class="timeline-fill"></div>
-        <div class="timeline-item right" data-prog="0.12" style="top: 12%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Machine Learning (Supervisado & No Supervisado)" data-en="Machine Learning (Supervised & Unsupervised)">Machine Learning (Supervised & Unsupervised)</div></div>
-        <div class="timeline-item left" data-prog="0.25" style="top: 25%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Deep Learning (MLP, CNNs, Transfer Learning)" data-en="Deep Learning (MLP, CNNs, Transfer Learning)">Deep Learning (MLP, CNNs, Transfer Learning)</div></div>
-        <div class="timeline-item right" data-prog="0.37" style="top: 37%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Computer Vision (Extracción de Características, Visión 3D, Detección de Objetos)" data-en="Computer Vision (Feature Extraction, 3D Vision, Object Detection)">Computer Vision (Feature Extraction, 3D Vision, Object Detection)</div></div>
-        <div class="timeline-item left" data-prog="0.50" style="top: 50%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Procesamiento & Segmentación de Imágenes" data-en="Image Processing & Segmentation">Image Processing & Segmentation</div></div>
-        <div class="timeline-item right" data-prog="0.62" style="top: 62%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Modelado Estadístico e Inferencia" data-en="Statistical Modeling & Inference">Statistical Modeling & Inference</div></div>
-        <div class="timeline-item left" data-prog="0.75" style="top: 75%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Modelado Predictivo" data-en="Predictive Modeling">Predictive Modeling</div></div>
-        <div class="timeline-item right" data-prog="0.87" style="top: 87%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Ingeniería de Características" data-en="Feature Engineering">Feature Engineering</div></div>
+        
+        <div class="timeline-item right" data-prog="0.12" style="top: 12%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Machine Learning (Supervisado & No Supervisado)" data-en="Machine Learning (Supervised & Unsupervised)">Machine Learning (Supervised & Unsupervised)</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.25" style="top: 25%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Deep Learning (MLP, CNNs, Transfer Learning)" data-en="Deep Learning (MLP, CNNs, Transfer Learning)">Deep Learning (MLP, CNNs, Transfer Learning)</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.37" style="top: 37%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Computer Vision (Extracción de Características, Visión 3D, Detección de Objetos)" data-en="Computer Vision (Feature Extraction, 3D Vision, Object Detection)">Computer Vision (Feature Extraction, 3D Vision, Object Detection)</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.50" style="top: 50%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Procesamiento & Segmentación de Imágenes" data-en="Image Processing & Segmentation">Image Processing & Segmentation</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.62" style="top: 62%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Modelado Estadístico e Inferencia" data-en="Statistical Modeling & Inference">Statistical Modeling & Inference</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.75" style="top: 75%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Modelado Predictivo" data-en="Predictive Modeling">Predictive Modeling</div>
+        </div>
+
+        <div class="timeline-item right" data-prog="0.87" style="top: 87%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Ingeniería de Características" data-en="Feature Engineering">Feature Engineering</div>
+        </div>
       </div>
     </div>
 
@@ -672,11 +926,31 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
           <div class="track-knob bottom"></div>
         </div>
         <div class="timeline-fill"></div>
-        <div class="timeline-item right" data-prog="0.16" style="top: 16%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Algoritmos & Estructuras de Datos" data-en="Algorithms & Data Structures">Algorithms & Data Structures</div></div>
-        <div class="timeline-item left" data-prog="0.33" style="top: 33%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Sistemas Distribuidos & Redes" data-en="Distributed Systems & Networking">Distributed Systems & Networking</div></div>
-        <div class="timeline-item right" data-prog="0.50" style="top: 50%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Sistemas Operativos & Programación de Bajo Nivel" data-en="Operating Systems & Low-Level Programming">Operating Systems & Low-Level Programming</div></div>
-        <div class="timeline-item left" data-prog="0.66" style="top: 66%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Sistemas de Bases de Datos (SQL & NoSQL)" data-en="Database Systems (SQL & NoSQL)">Database Systems (SQL & NoSQL)</div></div>
-        <div class="timeline-item right" data-prog="0.83" style="top: 83%;"><div class="timeline-dash"></div><div class="timeline-content" data-es="Ingeniería de Software (POO, Funcional, Patrones, Testing)" data-en="Software Engineering (OOP, Functional, Design Patterns, Testing)">Software Engineering (OOP, Functional, Design Patterns, Testing)</div></div>
+        
+        <div class="timeline-item right" data-prog="0.16" style="top: 16%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Algoritmos & Estructuras de Datos" data-en="Algorithms & Data Structures">Algorithms & Data Structures</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.33" style="top: 33%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Sistemas Distribuidos & Redes" data-en="Distributed Systems & Networking">Distributed Systems & Networking</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.50" style="top: 50%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Sistemas Operativos & Programación de Bajo Nivel" data-en="Operating Systems & Low-Level Programming">Operating Systems & Low-Level Programming</div>
+        </div>
+        
+        <div class="timeline-item left" data-prog="0.66" style="top: 66%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Sistemas de Bases de Datos (SQL & NoSQL)" data-en="Database Systems (SQL & NoSQL)">Database Systems (SQL & NoSQL)</div>
+        </div>
+        
+        <div class="timeline-item right" data-prog="0.83" style="top: 83%;">
+          <div class="timeline-dash"></div>
+          <div class="timeline-content" data-es="Ingeniería de Software (POO, Funcional, Patrones, Testing)" data-en="Software Engineering (OOP, Functional, Design Patterns, Testing)">Software Engineering (OOP, Functional, Design Patterns, Testing)</div>
+        </div>
       </div>
     </div>
 
@@ -693,12 +967,54 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
         <h2 class="sw-title" data-es="Trabajo<br>Seleccionado" data-en="Selected<br>Work">Selected<br>Work</h2>
       </div>
       <div class="work-orbit-ring">
-        <div class="rf-pos" style="--rot: 0deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Asistente Conversacional" data-en="Conversational Assistant">Conversational Assistant</h3></a></div></div></div>
-        <div class="rf-pos" style="--rot: 60deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Generación Imágenes" data-en="Image Generation">Image Generation</h3></a></div></div></div>
-        <div class="rf-pos" style="--rot: 120deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Agente Autónomo" data-en="Autonomous Agent">Autonomous Agent</h3></a></div></div></div>
-        <div class="rf-pos" style="--rot: 180deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Análisis Sentimiento" data-en="Sentiment Analysis">Sentiment Analysis</h3></a></div></div></div>
-        <div class="rf-pos" style="--rot: 240deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Computer Vision" data-en="Computer Vision">Computer Vision</h3></a></div></div></div>
-        <div class="rf-pos" style="--rot: 300deg;"><div class="rf-animator"><div class="rf-animator-inner"><a href="#" class="retro-folder-wrapper"><div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div><h3 class="rf-name" data-es="Predictive Modeling" data-en="Predictive Modeling">Predictive Modeling</h3></a></div></div></div>
+        <div class="rf-pos" style="--rot: 0deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Asistente Conversacional" data-en="Conversational Assistant">Conversational Assistant</h3>
+            </a>
+          </div></div>
+        </div>
+        <div class="rf-pos" style="--rot: 60deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Generación Imágenes" data-en="Image Generation">Image Generation</h3>
+            </a>
+          </div></div>
+        </div>
+        <div class="rf-pos" style="--rot: 120deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Agente Autónomo" data-en="Autonomous Agent">Autonomous Agent</h3>
+            </a>
+          </div></div>
+        </div>
+        <div class="rf-pos" style="--rot: 180deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Análisis Sentimiento" data-en="Sentiment Analysis">Sentiment Analysis</h3>
+            </a>
+          </div></div>
+        </div>
+        <div class="rf-pos" style="--rot: 240deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Computer Vision" data-en="Computer Vision">Computer Vision</h3>
+            </a>
+          </div></div>
+        </div>
+        <div class="rf-pos" style="--rot: 300deg;">
+          <div class="rf-animator"><div class="rf-animator-inner">
+            <a href="#" class="retro-folder-wrapper">
+              <div class="pixel-folder"><div class="pf-back"></div><div class="pf-paper"></div><div class="pf-front"></div></div>
+              <h3 class="rf-name" data-es="Predictive Modeling" data-en="Predictive Modeling">Predictive Modeling</h3>
+            </a>
+          </div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -723,24 +1039,63 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
         <span class="os-tbar-label" id="osFolderLabel" data-es="Seleccioná una carpeta" data-en="Select a folder">Select a folder</span>
       </div>
       <div class="os-folders">
-        <div class="folder" data-idx="0"><span class="folder-icon">📁</span><div class="folder-name" data-es="RAG Docs" data-en="RAG Docs">RAG Docs</div><div class="folder-desc" data-es="Documentos inteligentes" data-en="Smart documents">Smart documents</div><span class="folder-badge">RAG</span></div>
-        <div class="folder" data-idx="1"><span class="folder-icon">📁</span><div class="folder-name" data-es="RAG Legal" data-en="RAG Legal">RAG Legal</div><div class="folder-desc" data-es="Análisis de contratos" data-en="Contract analysis">Contract analysis</div><span class="folder-badge">RAG</span></div>
-        <div class="folder" data-idx="2"><span class="folder-icon">📁</span><div class="folder-name" data-es="RAG Research" data-en="RAG Research">RAG Research</div><div class="folder-desc" data-es="Papers científicos" data-en="Scientific papers">Scientific papers</div><span class="folder-badge">RAG</span></div>
+        <div class="folder" data-idx="0">
+          <span class="folder-icon">📁</span>
+          <div class="folder-name" data-es="RAG Docs" data-en="RAG Docs">RAG Docs</div>
+          <div class="folder-desc" data-es="Documentos inteligentes" data-en="Smart documents">Smart documents</div>
+          <span class="folder-badge">RAG</span>
+        </div>
+        <div class="folder" data-idx="1">
+          <span class="folder-icon">📁</span>
+          <div class="folder-name" data-es="RAG Legal" data-en="RAG Legal">RAG Legal</div>
+          <div class="folder-desc" data-es="Análisis de contratos" data-en="Contract analysis">Contract analysis</div>
+          <span class="folder-badge">RAG</span>
+        </div>
+        <div class="folder" data-idx="2">
+          <span class="folder-icon">📁</span>
+          <div class="folder-name" data-es="RAG Research" data-en="RAG Research">RAG Research</div>
+          <div class="folder-desc" data-es="Papers científicos" data-en="Scientific papers">Scientific papers</div>
+          <span class="folder-badge">RAG</span>
+        </div>
       </div>
       <div class="os-chat" id="osc0">
-        <div class="os-chat-topbar"><span class="os-chat-title">RAG Docs — Chat</span><div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div></div>
-        <div class="ochat-msgs" id="om0"><div class="omsg omsg-ai" data-es="RAG Docs listo. Preguntame sobre cualquier documento del sistema." data-en="RAG Docs ready. Ask me anything about documents in the system.">RAG Docs ready. Ask me anything about documents in the system.</div></div>
-        <div class="ochat-input"><input class="oinput" id="oi0" type="text" autocomplete="off" data-placeholder-es="Preguntá sobre tus documentos..." data-placeholder-en="Ask about your documents..." placeholder="Ask about your documents..."><button class="osend" data-idx="0" data-es="Enviar" data-en="Send">Send</button></div>
+        <div class="os-chat-topbar">
+          <span class="os-chat-title">RAG Docs — Chat</span>
+          <div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div>
+        </div>
+        <div class="ochat-msgs" id="om0">
+          <div class="omsg omsg-ai" data-es="RAG Docs listo. Preguntame sobre cualquier documento del sistema." data-en="RAG Docs ready. Ask me anything about documents in the system.">RAG Docs ready. Ask me anything about documents in the system.</div>
+        </div>
+        <div class="ochat-input">
+          <input class="oinput" id="oi0" type="text" autocomplete="off" data-placeholder-es="Preguntá sobre tus documentos..." data-placeholder-en="Ask about your documents..." placeholder="Ask about your documents...">
+          <button class="osend" data-idx="0" data-es="Enviar" data-en="Send">Send</button>
+        </div>
       </div>
       <div class="os-chat" id="osc1">
-        <div class="os-chat-topbar"><span class="os-chat-title">RAG Legal — Chat</span><div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div></div>
-        <div class="ochat-msgs" id="om1"><div class="omsg omsg-ai" data-es="RAG Legal listo. Consultame sobre cláusulas y contratos." data-en="RAG Legal ready. Ask about clauses and contracts.">RAG Legal ready. Ask about clauses and contracts.</div></div>
-        <div class="ochat-input"><input class="oinput" id="oi1" type="text" autocomplete="off" data-placeholder-es="Consultá sobre contratos..." data-placeholder-en="Ask about contracts..." placeholder="Ask about contracts..."><button class="osend" data-idx="1" data-es="Enviar" data-en="Send">Send</button></div>
+        <div class="os-chat-topbar">
+          <span class="os-chat-title">RAG Legal — Chat</span>
+          <div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div>
+        </div>
+        <div class="ochat-msgs" id="om1">
+          <div class="omsg omsg-ai" data-es="RAG Legal listo. Consultame sobre cláusulas y contratos." data-en="RAG Legal ready. Ask about clauses and contracts.">RAG Legal ready. Ask about clauses and contracts.</div>
+        </div>
+        <div class="ochat-input">
+          <input class="oinput" id="oi1" type="text" autocomplete="off" data-placeholder-es="Consultá sobre contratos..." data-placeholder-en="Ask about contracts..." placeholder="Ask about contracts...">
+          <button class="osend" data-idx="1" data-es="Enviar" data-en="Send">Send</button>
+        </div>
       </div>
       <div class="os-chat" id="osc2">
-        <div class="os-chat-topbar"><span class="os-chat-title">RAG Research — Chat</span><div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div></div>
-        <div class="ochat-msgs" id="om2"><div class="omsg omsg-ai" data-es="RAG Research listo. Explorámos papers juntos." data-en="RAG Research ready. Let's explore papers together.">RAG Research ready. Let's explore papers together.</div></div>
-        <div class="ochat-input"><input class="oinput" id="oi2" type="text" autocomplete="off" data-placeholder-es="Explorá papers científicos..." data-placeholder-en="Explore scientific papers..." placeholder="Explore scientific papers..."><button class="osend" data-idx="2" data-es="Enviar" data-en="Send">Send</button></div>
+        <div class="os-chat-topbar">
+          <span class="os-chat-title">RAG Research — Chat</span>
+          <div class="os-live"><div class="live-dot"></div><span class="live-label" data-es="Activo" data-en="Active">Active</span></div>
+        </div>
+        <div class="ochat-msgs" id="om2">
+          <div class="omsg omsg-ai" data-es="RAG Research listo. Explorámos papers juntos." data-en="RAG Research ready. Let's explore papers together.">RAG Research ready. Let's explore papers together.</div>
+        </div>
+        <div class="ochat-input">
+          <input class="oinput" id="oi2" type="text" autocomplete="off" data-placeholder-es="Explorá papers científicos..." data-placeholder-en="Explore scientific papers..." placeholder="Explore scientific papers...">
+          <button class="osend" data-idx="2" data-es="Enviar" data-en="Send">Send</button>
+        </div>
       </div>
     </div>
   </div>
@@ -774,7 +1129,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 /* ═══ CURSOR ═══ */
 const cur = document.getElementById('cur');
 const ring = document.getElementById('cur-ring');
-let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = 0, ry = 0;
+let mx=window.innerWidth/2, my=window.innerHeight/2, rx=0, ry=0;
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   cur.style.left = mx + 'px'; cur.style.top = my + 'px';
@@ -827,7 +1182,7 @@ function buildWords(words){
   const p = document.getElementById('heroSubText'); p.innerHTML = '';
   words.forEach((w, i) => {
     const wd = document.createElement('span'); wd.className = 'word';
-    const inner = document.createElement('span');
+    const inner = document.createElement('span'); 
     inner.textContent = w;
     inner.style.transitionDelay = (i * 0.04) + 's';
     wd.appendChild(inner); p.appendChild(wd);
@@ -901,7 +1256,8 @@ function initPixelCanvas() {
     for(let j=0; j<rows; j++){
       if(Math.random() > 0.6){
         canvasPixels.push({
-          x: i * pSize, y: j * pSize,
+          x: i * pSize,
+          y: j * pSize,
           appearProg: Math.random() * 0.4,
           disappearProg: 0.6 + Math.random() * 0.4
         });
@@ -934,14 +1290,16 @@ const nnCanvas = document.getElementById('nn-canvas');
 const nnCtx = nnCanvas.getContext('2d');
 let particles = [];
 
+// Detectar si es dispositivo táctil/mobile
 const isMobile = () => window.innerWidth <= 960 || ('ontouchstart' in window);
 
 function getNNConfig() {
   if (isMobile()) {
     return {
-      numParticles: 70,
-      connectionDistance: 90,
-      speed: 0.25
+      numParticles: 60,
+      connectionDistance: 80,
+      mouseGlowRadius: 0,   // sin glow en mobile
+      speed: 0.3
     };
   }
   return {
@@ -956,6 +1314,7 @@ function initNN() {
   if(!nnCanvas) return;
   nnCanvas.width = window.innerWidth;
   nnCanvas.height = nnCanvas.offsetHeight || 600;
+  
   const cfg = getNNConfig();
   particles = [];
   for (let i = 0; i < cfg.numParticles; i++) {
@@ -969,63 +1328,51 @@ function initNN() {
   }
 }
 
-// Glow estático para mobile: pulsante, centrado abajo del canvas
-// (apunta hacia donde arranca "Selected Work")
-let mobileGlowPulse = 0;
-
+let nnAnimFrame = null;
 function animateNN() {
-  requestAnimationFrame(animateNN);
+  nnAnimFrame = requestAnimationFrame(animateNN);
   if(!nnCanvas) return;
+  
   const rect = nnCanvas.getBoundingClientRect();
   if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
-
+  
   const cfg = getNNConfig();
-  const mobile = isMobile();
-
   nnCtx.clearRect(0, 0, nnCanvas.width, nnCanvas.height);
 
-  // En mobile: glow estático pulsante en el centro inferior del canvas
-  // simula el resplandor de "Selected Work" que viene debajo
-  if (mobile) {
-    mobileGlowPulse += 0.025;
-    const glowAlpha = 0.28 + Math.sin(mobileGlowPulse) * 0.12;
-    const glowX = nnCanvas.width / 2;
-    const glowY = nnCanvas.height * 0.85; // cerca del borde inferior
-    const glowR = nnCanvas.width * 0.55;  // radio amplio para cubrir bien el ancho
-
-    const grad = nnCtx.createRadialGradient(glowX, glowY, 0, glowX, glowY, glowR);
-    grad.addColorStop(0, `rgba(244, 70, 183, ${glowAlpha})`);
-    grad.addColorStop(0.4, `rgba(71, 73, 227, ${glowAlpha * 0.4})`);
-    grad.addColorStop(1, 'transparent');
-    nnCtx.fillStyle = grad;
-    nnCtx.fillRect(0, 0, nnCanvas.width, nnCanvas.height);
-  }
-
-  // Posición del mouse (solo desktop)
-  const mouseCanvasX = (!mobile) ? mx - rect.left : -9999;
-  const mouseCanvasY = (!mobile) ? my - rect.top  : -9999;
+  // En mobile, el mouse está fuera de pantalla así que nunca activa el glow
+  // Solo calculamos posición relativa si NO es mobile
+  const mouseCanvasX = isMobile() ? -9999 : mx - rect.left;
+  const mouseCanvasY = isMobile() ? -9999 : my - rect.top;
 
   for (let i = 0; i < particles.length; i++) {
     let p = particles[i];
-    p.x += p.vx; p.y += p.vy;
-    if (p.x < 0 || p.x > nnCanvas.width)  p.vx *= -1;
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > nnCanvas.width) p.vx *= -1;
     if (p.y < 0 || p.y > nnCanvas.height) p.vy *= -1;
 
     for (let j = i + 1; j < particles.length; j++) {
       let p2 = particles[j];
-      let dx = p.x - p2.x, dy = p.y - p2.y;
+      let dx = p.x - p2.x;
+      let dy = p.y - p2.y;
       let dist = Math.sqrt(dx*dx + dy*dy);
+
       if (dist < cfg.connectionDistance) {
         let opacity = 1 - (dist / cfg.connectionDistance);
+
+        // Solo calcular mouse glow en desktop
         let isNearMouse = false;
-        if (!mobile && cfg.mouseGlowRadius) {
-          let midX = (p.x + p2.x) / 2, midY = (p.y + p2.y) / 2;
-          let md = Math.sqrt(Math.pow(midX - mouseCanvasX, 2) + Math.pow(midY - mouseCanvasY, 2));
-          isNearMouse = md < cfg.mouseGlowRadius;
+        if (!isMobile() && cfg.mouseGlowRadius > 0) {
+          let midX = (p.x + p2.x) / 2;
+          let midY = (p.y + p2.y) / 2;
+          let mouseDist = Math.sqrt(Math.pow(midX - mouseCanvasX, 2) + Math.pow(midY - mouseCanvasY, 2));
+          isNearMouse = mouseDist < cfg.mouseGlowRadius;
         }
+
         nnCtx.beginPath();
         nnCtx.moveTo(p.x, p.y);
         nnCtx.lineTo(p2.x, p2.y);
+
         if (isNearMouse) {
           nnCtx.strokeStyle = `rgba(244, 70, 183, ${opacity * 1.5})`;
           nnCtx.lineWidth = 1.2;
@@ -1044,10 +1391,16 @@ function animateNN() {
   }
 }
 
-window.addEventListener('resize', initNN);
-window.addEventListener('load', () => { initNN(); animateNN(); });
+window.addEventListener('resize', () => {
+  initNN();
+});
 
-/* ═══ SKILLS TIMELINE ═══ */
+window.addEventListener('load', () => {
+  initNN();
+  animateNN();
+});
+
+/* ═══ SKILLS TIMELINE SCROLL-DRIVEN ═══ */
 function updateTimeline() {
   document.querySelectorAll('.timeline-container').forEach(container => {
     const fill = container.querySelector('.timeline-fill');
@@ -1060,15 +1413,19 @@ function updateTimeline() {
     let prog = (triggerPoint - rect.top) / rect.height;
     prog = Math.max(0, Math.min(1, prog));
     fill.style.height = (prog * 100) + '%';
-    knobTop.classList.toggle('filled', prog > 0.02);
-    knobBottom.classList.toggle('filled', prog >= 0.99);
+    if(prog > 0.02) knobTop.classList.add('filled');
+    else knobTop.classList.remove('filled');
+    if(prog >= 0.99) knobBottom.classList.add('filled');
+    else knobBottom.classList.remove('filled');
     container.querySelectorAll('.timeline-item').forEach(item => {
-      item.classList.toggle('active', prog >= parseFloat(item.dataset.prog));
+      const itemProg = parseFloat(item.dataset.prog);
+      if(prog >= itemProg) item.classList.add('active');
+      else item.classList.remove('active');
     });
   });
 }
 
-/* ═══ SCROLL HANDLER ═══ */
+/* ═══ SCROLL HANDLER PRINCIPAL ═══ */
 function onScroll(){
   const pinTop = heroPinEl.getBoundingClientRect().top + window.scrollY;
   const scrollRoom = heroPinEl.offsetHeight - window.innerHeight;
@@ -1114,6 +1471,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
   const el = document.getElementById(id);
   if(el){ el.style.transform='translateY(110%)'; el.style.transition='transform 1.1s cubic-bezier(.16,1,.3,1)'; }
 });
+
 const contactEl = document.getElementById('contact');
 let contactTimeouts = [];
 new IntersectionObserver(entries => {
@@ -1134,7 +1492,7 @@ new IntersectionObserver(entries => {
   });
 }, {threshold:.1}).observe(contactEl);
 
-/* ═══ PROJECTS ═══ */
+/* ═══ PROJECTS FOLDERS ═══ */
 let activeFolder = -1;
 document.querySelectorAll('.folder').forEach(f => {
   f.addEventListener('click', () => {
