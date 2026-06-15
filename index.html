@@ -7,6 +7,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+/* ═══ CONFIGURACIÓN GLOBAL DE CURSOR ═══ */
+* {
+  cursor: default; /* Evita que el mouse cambie al pasar sobre textos */
+}
+a, button, .folder, .lang-btn, .mobile-close, .nav-menu-btn, .osend {
+  cursor: pointer !important; /* Fuerza la manito en elementos clickeables */
+}
+input, textarea, .oinput {
+  cursor: text !important; /* Cursor de escritura solo en los inputs */
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --black: #080808;
@@ -79,12 +90,12 @@ nav.scrolled{
 .lang-toggle{display:flex;border:1px solid var(--line);overflow:hidden;border-radius:4px;}
 .lang-btn{
   font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
-  background:none;border:none;cursor:pointer;padding:7px 14px;color:var(--muted);
+  background:none;border:none;padding:7px 14px;color:var(--muted);
   transition:color .2s,background .2s;
 }
 .lang-btn.active{background:var(--blue);color:#fff}
 .lang-btn:not(.active):hover{color:var(--text)}
-.nav-menu-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.nav-menu-btn{display:none;background:none;border:none;flex-direction:column;gap:5px;padding:4px;}
 .nav-menu-btn span{display:block;width:22px;height:1px;background:var(--text);transition:all .3s}
 
 .mobile-nav{
@@ -97,7 +108,7 @@ nav.scrolled{
 .mobile-nav.open{opacity:1;pointer-events:all}
 .mobile-nav a{font-family:var(--fd);font-size:46px;font-weight:700;letter-spacing:-.03em;color:var(--text);text-decoration:none;transition:color .2s;}
 .mobile-nav a:hover{color:var(--coral)}
-.mobile-close{position:absolute;top:26px;right:26px;background:none;border:none;cursor:pointer;font-size:22px;color:var(--muted);}
+.mobile-close{position:absolute;top:26px;right:26px;background:none;border:none;font-size:22px;color:var(--muted);}
 .mobile-lang{display:flex;border:1px solid var(--line);overflow:hidden;margin-top:12px;border-radius:4px;}
 .mobile-lang .lang-btn{padding:10px 20px;font-size:10px}
 
@@ -587,7 +598,7 @@ html[lang="es"] .sw-title {
 .os-tbar-dot{width:9px;height:9px;border-radius:50%}
 .os-tbar-label{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.45;margin-left:auto;}
 .os-folders{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,237,232,.08);border-bottom:1px solid rgba(240,237,232,.08);}
-.folder{background:#0a0a0a;padding:32px 28px;cursor:pointer;transition:background .3s;position:relative;overflow:hidden;}
+.folder{background:#0a0a0a;padding:32px 28px;transition:background .3s;position:relative;overflow:hidden;}
 .folder::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,var(--coral),var(--pink));
@@ -631,7 +642,7 @@ html[lang="es"] .sw-title {
 .oinput{flex:1;background:transparent;border:1px solid rgba(240,237,232,.15);border-radius:6px;padding:11px 14px;font-family:var(--fd);font-size:14px;color:var(--text);outline:none;transition:border-color .28s;}
 .oinput:focus{border-color:rgba(71,73,227,.4)}
 .oinput::placeholder{color:var(--muted);font-size:13px}
-.osend{background:var(--blue);color:#fff;border:none;border-radius:6px;font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;cursor:pointer;transition:opacity .2s,transform .18s;}
+.osend{background:var(--blue);color:#fff;border:none;border-radius:6px;font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;transition:opacity .2s,transform .18s;}
 .osend:hover{opacity:.82;transform:translateY(-1px)}
 .osend:active{transform:translateY(0)}
 
@@ -840,9 +851,6 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
   .hero-sub-text{font-size:clamp(24px,8vw,38px)}
   .cbig{font-size:clamp(38px,11vw,60px)}
   .socials{gap:20px}
-  body{cursor:auto}
-  #cur,#cur-ring{display:none}
-  .lang-btn,.mobile-close,.nav-menu-btn,.osend{cursor:pointer}
   .folder{padding:20px 16px;}
   .folder-name{font-size:13px;}
   .ochat-input{flex-direction:column;}
