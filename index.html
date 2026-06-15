@@ -28,7 +28,6 @@ body{
   font-family:var(--fd);
   font-weight:400;
   overflow-x:hidden;
-  cursor:none;
   /* CAMBIO: overflow visible global para descendentes */
   overflow-y: auto;
 }
@@ -1230,28 +1229,7 @@ footer p{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:.
 </footer>
 
 <script>
-/* ═══ CURSOR ═══ */
-const cur = document.getElementById('cur');
-const ring = document.getElementById('cur-ring');
-let mx=window.innerWidth/2, my=window.innerHeight/2, rx=0, ry=0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
-});
-(function cl(){
-  rx += (mx-rx)*.1; ry += (my-ry)*.1;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  requestAnimationFrame(cl);
-})();
 
-const workSection = document.getElementById('work');
-workSection.addEventListener('mouseenter', () => { cur.style.opacity='0'; ring.style.opacity='0'; });
-workSection.addEventListener('mouseleave', () => { cur.style.opacity='1'; ring.style.opacity='1'; });
-
-document.querySelectorAll('a,button,.work-item,.sk,.folder').forEach(el => {
-  el.addEventListener('mouseenter', ()=>{ cur.classList.add('big'); ring.classList.add('big') });
-  el.addEventListener('mouseleave', ()=>{ cur.classList.remove('big'); ring.classList.remove('big') });
-});
 
 const mouseOrb = document.getElementById('mouse-orb');
 const heroStickyEl = document.getElementById('hero-sticky');
