@@ -257,17 +257,18 @@ nav.scrolled{
   overflow: visible;
 }
 .hero-sub.show{opacity:1}
-.hero-sub-text {
+.hero-sub-text{
   font-family: var(--fd);
   font-size: clamp(32px, 5.2vw, 76px);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.2;
+  line-height: 1.35; /* antes 1.2 */
   color: var(--text);
   overflow: visible;
   transition: color 0.4s ease;
-  padding-bottom: .2em;
+  padding-bottom: .25em; /* antes .2em */
 }
+
 .word {
   display: inline-block;
   margin-right: .2em;
@@ -671,16 +672,16 @@ html[lang="es"] .sw-title {
 #contact.revealed .contact-content{opacity:1}
 .cbig {
   font-family: var(--fd);
-  font-size: clamp(56px, 9.5vw, 132px); /* ESTA ES LA LÍNEA */
+  font-size: clamp(56px, 9.5vw, 132px);
   font-weight: 800;
   letter-spacing: -.05em;
-  line-height: 1.1; /* 1. Subimos esto para que no ampute las letras largas */
+  line-height: 1.3; /* antes 1.1 — este era el principal culpable */
   color: var(--coral);
   display: block;
   overflow: visible;
-  text-align: center; /* AGREGAR ESTA LÍNEA */
-  padding-bottom: 0; /* 2. Ya no hace falta este parche */
-  margin-bottom: -0.25em; /* 3. Si querés las palabras más pegadas, hacé este número más negativo (ej: -0.35em) */
+  text-align: center;
+  padding-bottom: 0;
+  margin-bottom: -0.1em; /* antes -0.25em, mucho más agresivo */
 }
 .cbig span{display:inline-block;transform:translateY(110%);overflow:visible;}
 .contact-email{
