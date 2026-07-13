@@ -272,10 +272,12 @@ nav.scrolled{
   display: inline-block;
   margin-right: .2em;
   vertical-align: bottom;
-  -webkit-clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
-  clip-path: polygon(0 -20%, 100% -20%, 100% 140%, 0 140%);
+  /* Aumentamos el 140% a 200% para dar aire a las descendentes */
+  -webkit-clip-path: polygon(0 -20%, 100% -20%, 100% 200%, 0 200%);
+  clip-path: polygon(0 -20%, 100% -20%, 100% 200%, 0 200%);
   overflow: visible;
 }
+  
 .word > span {
   display: inline-block;
   transform: translateY(150%); 
