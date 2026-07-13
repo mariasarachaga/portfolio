@@ -272,9 +272,6 @@ nav.scrolled{
   display: inline-block;
   margin-right: .2em;
   vertical-align: bottom;
-  /* Aumentamos el 140% a 200% para dar aire a las descendentes */
-  -webkit-clip-path: polygon(0 -20%, 100% -20%, 100% 200%, 0 200%);
-  clip-path: polygon(0 -20%, 100% -20%, 100% 200%, 0 200%);
   overflow: visible;
 }
   
@@ -681,10 +678,15 @@ html[lang="es"] .sw-title {
   display: block;
   overflow: visible;
   text-align: center; /* AGREGAR ESTA LÍNEA */
-  padding-bottom: 0; /* 2. Ya no hace falta este parche */
+  padding-bottom: 0.2em; /* 2. Ya no hace falta este parche */
   margin-bottom: -0.25em; /* 3. Si querés las palabras más pegadas, hacé este número más negativo (ej: -0.35em) */
 }
-.cbig span{display:inline-block;transform:translateY(110%);overflow:visible;}
+.cbig span {
+  display: inline-block;
+  transform: translateY(110%);
+  overflow: visible;
+}
+  
 .contact-email{
   display:inline-block;margin-top:56px;
   font-family:var(--fd);font-size:16px;font-weight:700;
