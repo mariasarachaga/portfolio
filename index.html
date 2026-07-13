@@ -282,7 +282,8 @@ nav.scrolled{
   transform: translateY(150%); 
   transition: transform .4s cubic-bezier(.16,1,.3,1);
   overflow: visible;
-  padding-bottom: .1em;
+  padding-top: .1em;
+  padding-bottom: .3em; /* esto es lo que le faltaba */
 }
 .word.in > span {
   transform: translateY(0);
@@ -683,7 +684,13 @@ html[lang="es"] .sw-title {
   padding-bottom: 0;
   margin-bottom: -0.1em; /* antes -0.25em, mucho más agresivo */
 }
-.cbig span{display:inline-block;transform:translateY(110%);overflow:visible;}
+.cbig span{
+  display:inline-block;
+  transform:translateY(110%);
+  overflow:visible;
+  padding-top: .1em;
+  padding-bottom: .35em; /* esto es lo que le faltaba */
+}
 .contact-email{
   display:inline-block;margin-top:56px;
   font-family:var(--fd);font-size:16px;font-weight:700;
